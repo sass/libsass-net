@@ -41,15 +41,8 @@
     <ClCompile Include="native\sassc++.cpp" />
     <ClCompile Include="native\sass_interface.cpp" />
     <ClCompile Include="native\source_map.cpp" />
-    <ClCompile Include="native\test_paths.cpp" />
-    <ClCompile Include="native\test_selector_difference.cpp" />
-    <ClCompile Include="native\test_specificity.cpp" />
-    <ClCompile Include="native\test_subset_map.cpp" />
-    <ClCompile Include="native\test_superselector.cpp" />
-    <ClCompile Include="native\test_unification.cpp" />
     <ClCompile Include="native\to_c.cpp" />
     <ClCompile Include="native\to_string.cpp" />
-    <ClCompile Include="native\trim.cpp" />
     <ClCompile Include="native\units.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -80,17 +73,14 @@
     <ClInclude Include="native\output_compressed.hpp" />
     <ClInclude Include="native\output_nested.hpp" />
     <ClInclude Include="native\parser.hpp" />
-    <ClInclude Include="native\paths.hpp" />
     <ClInclude Include="native\position.hpp" />
     <ClInclude Include="native\prelexer.hpp" />
     <ClInclude Include="native\sass.h" />
     <ClInclude Include="native\sass_interface.h" />
     <ClInclude Include="native\source_map.hpp" />
-    <ClInclude Include="native\subset_map.hpp" />
     <ClInclude Include="native\token.hpp" />
     <ClInclude Include="native\to_c.hpp" />
     <ClInclude Include="native\to_string.hpp" />
-    <ClInclude Include="native\trim.hpp" />
     <ClInclude Include="native\units.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
