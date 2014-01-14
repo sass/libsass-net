@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CallbackMarshaller.cpp" />
+    <ClCompile Include="callback_manager.cpp" />
     <ClCompile Include="native\ast.cpp" />
     <ClCompile Include="native\base64vlq.cpp" />
     <ClCompile Include="native\bind.cpp" />
@@ -44,8 +46,13 @@
     <ClCompile Include="native\to_c.cpp" />
     <ClCompile Include="native\to_string.cpp" />
     <ClCompile Include="native\units.cpp" />
+    <ClCompile Include="SassInterface.cpp" />
+    <ClCompile Include="StringToANSI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CallbackMarshaller.hpp" />
+    <ClInclude Include="callback_manager.hpp" />
+    <ClInclude Include="ISassInterface.hpp" />
     <ClInclude Include="native\ast.hpp" />
     <ClInclude Include="native\ast_def_macros.hpp" />
     <ClInclude Include="native\ast_factory.hpp" />
@@ -82,6 +89,9 @@
     <ClInclude Include="native\to_c.hpp" />
     <ClInclude Include="native\to_string.hpp" />
     <ClInclude Include="native\units.hpp" />
+    <ClInclude Include="SassInterface.hpp" />
+    <ClInclude Include="SassOptions.hpp" />
+    <ClInclude Include="StringToANSI.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3A1CF114-A5C0-4BA2-8C0D-47001E361718}</ProjectGuid>
@@ -90,10 +100,11 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
