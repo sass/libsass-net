@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -18,16 +18,91 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="native\ast.cpp" />
+    <ClCompile Include="native\base64vlq.cpp" />
+    <ClCompile Include="native\bind.cpp" />
+    <ClCompile Include="native\constants.cpp" />
+    <ClCompile Include="native\context.cpp" />
+    <ClCompile Include="native\contextualize.cpp" />
+    <ClCompile Include="native\copy_c_str.cpp" />
+    <ClCompile Include="native\error_handling.cpp" />
+    <ClCompile Include="native\eval.cpp" />
+    <ClCompile Include="native\expand.cpp" />
+    <ClCompile Include="native\extend.cpp" />
+    <ClCompile Include="native\file.cpp" />
+    <ClCompile Include="native\functions.cpp" />
+    <ClCompile Include="native\inspect.cpp" />
+    <ClCompile Include="native\output_compressed.cpp" />
+    <ClCompile Include="native\output_nested.cpp" />
+    <ClCompile Include="native\parser.cpp" />
+    <ClCompile Include="native\prelexer.cpp" />
+    <ClCompile Include="native\sass.cpp" />
+    <ClCompile Include="native\sassc++.cpp" />
+    <ClCompile Include="native\sass_interface.cpp" />
+    <ClCompile Include="native\source_map.cpp" />
+    <ClCompile Include="native\test_paths.cpp" />
+    <ClCompile Include="native\test_selector_difference.cpp" />
+    <ClCompile Include="native\test_specificity.cpp" />
+    <ClCompile Include="native\test_subset_map.cpp" />
+    <ClCompile Include="native\test_superselector.cpp" />
+    <ClCompile Include="native\test_unification.cpp" />
+    <ClCompile Include="native\to_c.cpp" />
+    <ClCompile Include="native\to_string.cpp" />
+    <ClCompile Include="native\trim.cpp" />
+    <ClCompile Include="native\units.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="native\ast.hpp" />
+    <ClInclude Include="native\ast_def_macros.hpp" />
+    <ClInclude Include="native\ast_factory.hpp" />
+    <ClInclude Include="native\ast_fwd_decl.hpp" />
+    <ClInclude Include="native\backtrace.hpp" />
+    <ClInclude Include="native\base64vlq.hpp" />
+    <ClInclude Include="native\bind.hpp" />
+    <ClInclude Include="native\color_names.hpp" />
+    <ClInclude Include="native\constants.hpp" />
+    <ClInclude Include="native\context.hpp" />
+    <ClInclude Include="native\contextualize.hpp" />
+    <ClInclude Include="native\copy_c_str.hpp" />
+    <ClInclude Include="native\environment.hpp" />
+    <ClInclude Include="native\error_handling.hpp" />
+    <ClInclude Include="native\eval.hpp" />
+    <ClInclude Include="native\expand.hpp" />
+    <ClInclude Include="native\extend.hpp" />
+    <ClInclude Include="native\file.hpp" />
+    <ClInclude Include="native\functions.hpp" />
+    <ClInclude Include="native\inspect.hpp" />
+    <ClInclude Include="native\kwd_arg_macros.hpp" />
+    <ClInclude Include="native\mapping.hpp" />
+    <ClInclude Include="native\memory_manager.hpp" />
+    <ClInclude Include="native\operation.hpp" />
+    <ClInclude Include="native\output_compressed.hpp" />
+    <ClInclude Include="native\output_nested.hpp" />
+    <ClInclude Include="native\parser.hpp" />
+    <ClInclude Include="native\paths.hpp" />
+    <ClInclude Include="native\position.hpp" />
+    <ClInclude Include="native\prelexer.hpp" />
+    <ClInclude Include="native\sass.h" />
+    <ClInclude Include="native\sass_interface.h" />
+    <ClInclude Include="native\source_map.hpp" />
+    <ClInclude Include="native\subset_map.hpp" />
+    <ClInclude Include="native\token.hpp" />
+    <ClInclude Include="native\to_c.hpp" />
+    <ClInclude Include="native\to_string.hpp" />
+    <ClInclude Include="native\trim.hpp" />
+    <ClInclude Include="native\units.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3A1CF114-A5C0-4BA2-8C0D-47001E361718}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>NSassLibSass</RootNamespace>
+    <RootNamespace>LibSass</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
