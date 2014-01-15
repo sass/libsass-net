@@ -1,4 +1,4 @@
-//Copyright (C) 2013 by TBAPI-0KA
+﻿//Copyright (C) 2013 by TBAPI-0KA
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy of
 //this software and associated documentation files (the "Software"), to deal in
@@ -18,25 +18,23 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using System.Runtime.InteropServices;
+
 namespace LibSassNet
 {
-	typedef void (__stdcall *FileAccessDelegate)(const char* path);
+    public static class ManagedCallbackManager
+    {
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        public delegate void FileAccessDelegate([MarshalAs(UnmanagedType.LPStr)]string path);
 
-	class CallbackManager
-	{
-		private:
-			FileAccessDelegate _fileAccessDelegate;
+        public static void SetFileAccessCallBack(FileAccessDelegate callback)
+        {
+            CallbackMarshaller.SetFileAccessCallBack(Marshal.GetFunctionPointerForDelegate(callback));
+        }
 
-			CallbackManager();
-
-			CallbackManager(CallbackManager const&);
-			void operator=(CallbackManager const&);
-
-		public:
-			static CallbackManager& getInstance();
-
-			void set_file_access_callback(FileAccessDelegate callBack);
-			void unset_file_access_callback();
-			void trigger_file_access_callback(const char* path);
-	};
+        public static void UnsetFileAccessCallBack()
+        {
+            CallbackMarshaller.UnsetFileAccessCallBack();
+        }
+    }
 }

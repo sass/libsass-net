@@ -20,7 +20,7 @@
 
 #include "ISassInterface.hpp"
 
-namespace libsassnet
+namespace LibSassNet
 {
 	public ref class SassInterface : ISassInterface
 	{

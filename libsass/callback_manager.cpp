@@ -21,7 +21,7 @@
 #include <stdio.h>
 #include "callback_manager.hpp"
 
-namespace libsassnet
+namespace LibSassNet
 {
 	CallbackManager& CallbackManager::getInstance()
 	{

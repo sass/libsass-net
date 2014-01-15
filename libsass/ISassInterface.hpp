@@ -20,7 +20,7 @@
 
 #include "SassOptions.hpp"
 
-namespace libsassnet
+namespace LibSassNet
 {
 	public interface class ISassInterface
 	{

@@ -21,16 +21,16 @@
 #include "callback_manager.hpp"
 #include "CallbackMarshaller.hpp"
 
-namespace libsassnet
+namespace LibSassNet
 {
 	void CallbackMarshaller::SetFileAccessCallBack(IntPtr^ callBack)
 	{
 		FileAccessDelegate pointer = (FileAccessDelegate)callBack->ToPointer();
-		libsassnet::CallbackManager::getInstance().set_file_access_callback(pointer);
+		LibSassNet::CallbackManager::getInstance().set_file_access_callback(pointer);
 	}
 
 	void CallbackMarshaller::UnsetFileAccessCallBack()
 	{
-		libsassnet::CallbackManager::getInstance().unset_file_access_callback();
+		LibSassNet::CallbackManager::getInstance().unset_file_access_callback();
 	}
 }

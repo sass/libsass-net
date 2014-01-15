@@ -24,7 +24,7 @@
 using namespace System;
 using namespace System::Runtime::InteropServices;
 
-namespace libsassnet
+namespace LibSassNet
 {
 	char* MarshalString(String^ s)
 	{

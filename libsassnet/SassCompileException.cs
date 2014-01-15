@@ -1,4 +1,4 @@
-//Copyright (C) 2013 by TBAPI-0KA
+﻿//Copyright (C) 2013 by TBAPI-0KA
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy of
 //this software and associated documentation files (the "Software"), to deal in
@@ -18,25 +18,15 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using System;
+
 namespace LibSassNet
 {
-	typedef void (__stdcall *FileAccessDelegate)(const char* path);
-
-	class CallbackManager
-	{
-		private:
-			FileAccessDelegate _fileAccessDelegate;
-
-			CallbackManager();
-
-			CallbackManager(CallbackManager const&);
-			void operator=(CallbackManager const&);
-
-		public:
-			static CallbackManager& getInstance();
-
-			void set_file_access_callback(FileAccessDelegate callBack);
-			void unset_file_access_callback();
-			void trigger_file_access_callback(const char* path);
-	};
+    public class SassCompileException : Exception
+    {
+        public SassCompileException(string message)
+            : base(message)
+        {
+        }
+    }
 }

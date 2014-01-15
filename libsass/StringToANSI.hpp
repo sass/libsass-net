@@ -22,7 +22,7 @@
 
 using namespace System;
 
-namespace libsassnet
+namespace LibSassNet
 {
 	char* MarshalString(String^ s);
 	void FreeString(const char* p);

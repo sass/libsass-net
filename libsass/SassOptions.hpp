@@ -22,7 +22,7 @@
 
 using namespace System;
 
-namespace libsassnet
+namespace LibSassNet
 {
 	public ref class SassOptions
 	{

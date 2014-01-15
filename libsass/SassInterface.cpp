@@ -25,7 +25,7 @@
 
 using namespace std;
 
-namespace libsassnet
+namespace LibSassNet
 {
 	int SassInterface::Compile(SassContext^ sassContext)
 	{
