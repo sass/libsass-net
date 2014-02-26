@@ -40,7 +40,6 @@
     <ClCompile Include="native\parser.cpp" />
     <ClCompile Include="native\prelexer.cpp" />
     <ClCompile Include="native\sass.cpp" />
-    <ClCompile Include="native\sassc++.cpp" />
     <ClCompile Include="native\sass_interface.cpp" />
     <ClCompile Include="native\source_map.cpp" />
     <ClCompile Include="native\to_c.cpp" />
@@ -103,7 +102,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
