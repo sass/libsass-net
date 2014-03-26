@@ -37,7 +37,7 @@ namespace LibSassNet
 			if (sassContext -> Options)
 			{
 				ctx -> options.output_style = sassContext -> Options -> OutputStyle;
-				ctx -> options.source_comments = sassContext -> Options -> SourceComments;
+				ctx -> options.source_comments = sassContext -> Options -> SourceCommentsMode;
 				ctx -> options.include_paths = MarshalString(sassContext -> Options -> IncludePaths);
 				ctx -> options.image_path = MarshalString(sassContext -> Options -> ImagePath);
 			}
@@ -80,9 +80,10 @@ namespace LibSassNet
 			if (sassFileContext -> Options)
 			{
 				ctx -> options.output_style = sassFileContext -> Options -> OutputStyle;
-				ctx -> options.source_comments = sassFileContext -> Options -> SourceComments;
+				ctx -> options.source_comments = sassFileContext -> Options -> SourceCommentsMode;
 				ctx -> options.include_paths = MarshalString(sassFileContext -> Options -> IncludePaths);
 				ctx -> options.image_path = MarshalString(sassFileContext -> Options -> ImagePath);
+				ctx -> source_map_file = MarshalString(sassFileContext -> OutputSourceMapFile);
 			}
 
 			// Compile SASS using context provided
@@ -90,6 +91,7 @@ namespace LibSassNet
 
 			// Copy resulting fields from unmanaged structure to managed
 			sassFileContext -> OutputString = gcnew String(ctx -> output_string);
+			sassFileContext -> OutputSourceMap = gcnew String(ctx -> source_map_string);
 			sassFileContext -> ErrorStatus = !!ctx -> error_status;
 			sassFileContext -> ErrorMessage = gcnew String(ctx -> error_message);
 

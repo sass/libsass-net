@@ -43,7 +43,7 @@ namespace LibSassNet
             _sassInterface = sassInterface;
         }
 
-        public string Compile(string source, OutputStyle outputStyle = OutputStyle.Nested, bool sourceComments = true, IEnumerable<string> includePaths = null)
+        public string Compile(string source, OutputStyle outputStyle = OutputStyle.Nested, SourceCommentsMode sourceComments = SourceCommentsMode.Default, IEnumerable<string> includePaths = null)
         {
             if (outputStyle != OutputStyle.Nested && outputStyle != OutputStyle.Compressed)
             {
@@ -56,7 +56,7 @@ namespace LibSassNet
                 Options = new SassOptions
                 {
                     OutputStyle = (int)outputStyle,
-                    SourceComments = sourceComments,
+                    SourceCommentsMode = (int)sourceComments,
                     IncludePaths = includePaths != null ? String.Join(";", includePaths) : String.Empty,
                     ImagePath = String.Empty
                 }
@@ -72,7 +72,7 @@ namespace LibSassNet
             return context.OutputString;
         }
 
-        public string CompileFile(string inputPath, OutputStyle outputStyle = OutputStyle.Nested, bool sourceComments = true, IEnumerable<string> additionalIncludePaths = null)
+        public CompileFileResult CompileFile(string inputPath, OutputStyle outputStyle = OutputStyle.Nested,  string sourceMapPath = null, SourceCommentsMode sourceComments = SourceCommentsMode.Default, IEnumerable<string> additionalIncludePaths = null)
         {
             if (outputStyle != OutputStyle.Nested && outputStyle != OutputStyle.Compressed)
             {
@@ -92,10 +92,11 @@ namespace LibSassNet
                 Options = new SassOptions
                 {
                     OutputStyle = (int)outputStyle,
-                    SourceComments = sourceComments,
+                    SourceCommentsMode = (int)sourceComments,
                     IncludePaths = String.Join(";", includePaths),
                     ImagePath = String.Empty
-                }
+                },
+                OutputSourceMapFile = sourceMapPath
             };
 
             _sassInterface.Compile(context);
@@ -105,7 +106,7 @@ namespace LibSassNet
                 throw new SassCompileException(context.ErrorMessage);
             }
 
-            return context.OutputString;
+            return new CompileFileResult(context.OutputString, context.OutputSourceMap);
         }
     }
 }

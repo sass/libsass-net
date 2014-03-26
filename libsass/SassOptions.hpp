@@ -28,7 +28,7 @@ namespace LibSassNet
 	{
 		public:
 			property int OutputStyle;
-			property bool SourceComments;
+			property int SourceCommentsMode;
 			property String^ IncludePaths;
 			property String^ ImagePath;
 	};
@@ -48,6 +48,8 @@ namespace LibSassNet
 		public:
 			property String^ InputPath;
 			property String^ OutputString;
+			property String^ OutputSourceMapFile;
+			property String^ OutputSourceMap;
 			property SassOptions^ Options;
 			property bool ErrorStatus;
 			property String^ ErrorMessage;
