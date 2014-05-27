@@ -5,7 +5,7 @@ $token = $token.Trim();
 
 
 $packages = @("libsassnet", "libsassnet.Web");
-$packages %{ 
+$packages | %{ 
     $packageName = $_ + ".nupkg";
     & '.\.nuget\NuGet.exe' $packageName $token
 };
