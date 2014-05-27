@@ -2,7 +2,7 @@
 <package>
 	<metadata>
 		<id>$id$</id>
-		<version>1.0</version>
+		<version>1.1</version>
 		<authors>Darren Kopp</authors>
     <owners>Darren Kopp</owners>
     <licenseUrl>https://github.com/darrenkopp/libsass-net/blob/master/LICENSE</licenseUrl>
@@ -15,7 +15,7 @@
 		<tags>SASS SCSS CSS libsass</tags>
 		<dependencies>
       <dependency id="Microsoft.AspNet.Web.Optimization" />
-			<dependency id="libsass-net" />
+			<dependency id="libsassnet" />
 		</dependencies>
 	</metadata>
 </package>
