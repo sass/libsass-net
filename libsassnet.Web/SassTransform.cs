@@ -19,6 +19,7 @@
 //SOFTWARE.
 
 using System.Text;
+using System.Linq;
 using System.Web.Optimization;
 
 namespace LibSassNet.Web
@@ -26,20 +27,27 @@ namespace LibSassNet.Web
     public class SassTransform : IBundleTransform
     {
         private readonly ISassCompiler Compiler = new SassCompiler();
+        readonly string _BasePath;
+        public SassTransform(string basePath)
+        {
+            _BasePath = basePath;
+        }
 
         public void Process(BundleContext context, BundleResponse response)
         {
-            var responseContent = new StringBuilder();
-            var root = context.HttpContext.Server.MapPath("~");
+            StringBuilder responseContent = new StringBuilder();
+            string root = context.HttpContext.Server.MapPath(_BasePath);
 
-            foreach (BundleFile bundleFile in response.Files)
+            // compile all scss files, but not "include" only files (let them be done with @include)
+            foreach (BundleFile bundleFile in response.Files.Where(x => !x.VirtualFile.Name.StartsWith("_")))
             {
-                var filename = context.HttpContext.Server.MapPath(bundleFile.IncludedVirtualPath);
-                responseContent.Append(Compiler.CompileFile(filename).CSS);
+                string filename = context.HttpContext.Server.MapPath(bundleFile.IncludedVirtualPath);
+                string output = Compiler.CompileFile(filename, additionalIncludePaths: new[] { root }).CSS;
+                responseContent.Append(output);
             }
 
-            response.ContentType = "text/css";
             response.Content = responseContent.ToString();
+            response.ContentType = "text/css";
         }
     }
 }
