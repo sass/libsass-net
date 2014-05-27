@@ -32,13 +32,13 @@ namespace LibSassNet.Web
         {
             string path = context.Server.MapPath(String.Format("~{0}", context.Request.Path));
             var file = new FileInfo(path);
-            if (!file.Name.StartsWith("_") && string.Equals(file.Extension, "scss", StringComparison.OrdinalIgnoreCase))
+            if (!file.Name.StartsWith("_") && string.Equals(file.Extension, ".scss", StringComparison.OrdinalIgnoreCase))
             {
                 string output = Compiler.CompileFile(path).CSS;
 
                 context.Response.ContentType = "text/css";
                 context.Response.Write(output);
-            } else if (file.Name.EndsWith("css", StringComparison.OrdinalIgnoreCase) && string.Equals(file.Extension, "map", StringComparison.OrdinalIgnoreCase))
+            } else if (file.Name.EndsWith(".css", StringComparison.OrdinalIgnoreCase) && string.Equals(file.Extension, ".map", StringComparison.OrdinalIgnoreCase))
             {
                 string output = Compiler.CompileFile(path).SourceMap;
 
