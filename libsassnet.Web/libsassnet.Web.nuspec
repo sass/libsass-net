@@ -12,7 +12,7 @@
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Provides SCSS compilation support for System.Web.Optimization</description>
 		<copyright>Copyright © 2014 by Darren Kopp</copyright>
-		<tags>SASS SCSS CSS libsass</tags>
+		<tags>SASS SCSS CSS libsass System.Web.Optimization Microsoft.AspNet.Web.Optimization</tags>
 		<dependencies>
       <dependency id="Microsoft.AspNet.Web.Optimization" />
 			<dependency id="libsassnet" />
