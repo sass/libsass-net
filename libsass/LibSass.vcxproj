@@ -28,6 +28,7 @@
     <ClCompile Include="native\context.cpp" />
     <ClCompile Include="native\contextualize.cpp" />
     <ClCompile Include="native\copy_c_str.cpp" />
+    <ClCompile Include="native\emscripten_wrapper.cpp" />
     <ClCompile Include="native\error_handling.cpp" />
     <ClCompile Include="native\eval.cpp" />
     <ClCompile Include="native\expand.cpp" />
@@ -46,6 +47,7 @@
     <ClCompile Include="native\to_c.cpp" />
     <ClCompile Include="native\to_string.cpp" />
     <ClCompile Include="native\units.cpp" />
+    <ClCompile Include="native\utf8_string.cpp" />
     <ClCompile Include="SassInterface.cpp" />
     <ClCompile Include="StringToANSI.cpp" />
   </ItemGroup>
@@ -65,6 +67,7 @@
     <ClInclude Include="native\context.hpp" />
     <ClInclude Include="native\contextualize.hpp" />
     <ClInclude Include="native\copy_c_str.hpp" />
+    <ClInclude Include="native\emscripten_wrapper.hpp" />
     <ClInclude Include="native\environment.hpp" />
     <ClInclude Include="native\error_handling.hpp" />
     <ClInclude Include="native\eval.hpp" />
@@ -80,16 +83,19 @@
     <ClInclude Include="native\output_compressed.hpp" />
     <ClInclude Include="native\output_nested.hpp" />
     <ClInclude Include="native\parser.hpp" />
+    <ClInclude Include="native\paths.hpp" />
     <ClInclude Include="native\position.hpp" />
     <ClInclude Include="native\prelexer.hpp" />
     <ClInclude Include="native\sass.h" />
     <ClInclude Include="native\sass2scss\sass2scss.h" />
     <ClInclude Include="native\sass_interface.h" />
     <ClInclude Include="native\source_map.hpp" />
+    <ClInclude Include="native\subset_map.hpp" />
     <ClInclude Include="native\token.hpp" />
     <ClInclude Include="native\to_c.hpp" />
     <ClInclude Include="native\to_string.hpp" />
     <ClInclude Include="native\units.hpp" />
+    <ClInclude Include="native\utf8_string.hpp" />
     <ClInclude Include="SassInterface.hpp" />
     <ClInclude Include="SassOptions.hpp" />
     <ClInclude Include="StringToANSI.hpp" />
