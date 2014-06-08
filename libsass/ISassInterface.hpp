@@ -26,6 +26,7 @@ namespace LibSassNet
 	{
 		int Compile(SassContext^ sassContext);
 		int Compile(SassFileContext^ sassFileContext);
+		void Convert(SassToScssConversionContext^ context);
 		// Folder context isn't implemented in core libsass library now
 		/*int Compile(SassFolderContext^ sassFolderContext);*/
 	};

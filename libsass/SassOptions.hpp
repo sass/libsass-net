@@ -64,4 +64,11 @@ namespace LibSassNet
 			property bool ErrorStatus;
 			property String^ ErrorMessage;
 	};
+
+	public ref class SassToScssConversionContext
+	{
+		public:
+			property String^ SourceText;
+			property String^ OutputText;
+	};
 }

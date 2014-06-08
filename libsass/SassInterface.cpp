@@ -115,6 +115,32 @@ namespace LibSassNet
 		}
 	}
 
+	void SassInterface::Convert(SassToScssConversionContext^ context)
+	{
+		char* sourceText;
+		try 
+		{
+			sourceText = MarshalString(context->SourceText);
+
+			char* result = Sass::sass2scss(sourceText, 128);
+			context->OutputText = gcnew String(result);
+
+			FreeString(result);
+		}
+		catch (exception& e)
+		{
+			throw gcnew Exception(gcnew String(e.what()));
+		}
+		catch (...)
+		{
+			throw gcnew Exception("Unhandled exception in native code");
+		}
+		finally 
+		{
+			FreeString(sourceText);
+		}
+	}
+
 	// Folder context isn't implemented in core libsass library now
 	/*int SassInterface::Compile(SassFolderContext^ sassFolderContext)
 	{
