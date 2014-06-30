@@ -4,7 +4,7 @@
 		<id>$id$.x64</id>
 		<version>1.5</version>
 		<authors>Darren Kopp</authors>
-    <owners>Darren Kopp</owners>
+		<owners>Darren Kopp</owners>
 		<licenseUrl>https://github.com/darrenkopp/libsass-net/blob/master/LICENSE</licenseUrl>
 		<projectUrl>https://github.com/darrenkopp/libsass-net/</projectUrl>
 		<!-- TODO: Add icon -->
