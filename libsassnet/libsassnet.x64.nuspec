@@ -15,6 +15,6 @@
 		<tags>SASS SCSS CSS libsass x64</tags>
 	</metadata>
 	<files>
-		<file src="bin\Release\libsass.x64.dll" target="lib\net40\" />
+		<file src="bin\x64\Release\libsass.x64.dll" target="lib\net40\" />
 	</files>
 </package>

@@ -49,7 +49,7 @@
     <Compile Include="SourceCommentsMode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="libsassnet-x64.nuspec" />
+    <None Include="libsassnet.x64.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libsass\LibSass.vcxproj">

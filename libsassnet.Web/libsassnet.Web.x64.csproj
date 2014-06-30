@@ -66,9 +66,9 @@
     <None Include="web.config.transform" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\libsassnet\libsassnet-x64.csproj">
+    <ProjectReference Include="..\libsassnet\libsassnet.x64.csproj">
       <Project>{14e9159a-0ccd-4277-a526-cc86e313e5d4}</Project>
-      <Name>libsassnet-x64</Name>
+      <Name>libsassnet.x64</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

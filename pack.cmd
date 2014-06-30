@@ -10,6 +10,9 @@
 )
 
 %PathToMsBuild%\MSBuild.exe libsass-net.sln /nologo /v:n /m:4 /p:Configuration=Release
+%PathToMsBuild%\MSBuild.exe libsass-net.sln /nologo /v:n /m:4 /p:Configuration=Release /p:Platform=x64
 
 .nuget\NuGet Pack "libsassnet\libsassnet.csproj" -Properties Configuration=Release
 .nuget\NuGet Pack "libsassnet.Web\libsassnet.Web.csproj" -Properties Configuration=Release
+.nuget\NuGet Pack "libsassnet\libsassnet.x64.csproj" -Properties Configuration=Release;Platform=x64
+.nuget\NuGet Pack "libsassnet.Web\libsassnet.Web.x64.csproj" -Properties Configuration=Release;Platform=x64
