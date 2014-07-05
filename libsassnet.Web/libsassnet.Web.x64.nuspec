@@ -1,0 +1,24 @@
+﻿<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>$id$.x64</id>
+		<version>1.4</version>
+		<authors>Darren Kopp</authors>
+		<owners>Darren Kopp</owners>
+		<licenseUrl>https://github.com/darrenkopp/libsass-net/blob/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/darrenkopp/libsass-net/</projectUrl>
+		<!-- TODO: Add icon -->
+		<!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Provides SCSS compilation support for System.Web.Optimization</description>
+		<copyright>Copyright © 2014 by Darren Kopp</copyright>
+		<tags>SASS SCSS CSS libsass x64 System.Web.Optimization Microsoft.AspNet.Web.Optimization</tags>
+		<dependencies>
+			<dependency id="Microsoft.AspNet.Web.Optimization" />
+			<dependency id="libsassnet.x64" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="web.config.transform" target="content\" />
+	</files>
+</package>
