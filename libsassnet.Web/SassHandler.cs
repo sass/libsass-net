@@ -38,7 +38,8 @@ namespace LibSassNet.Web
 
                 context.Response.ContentType = "text/css";
                 context.Response.Write(output);
-            } else if (file.Name.EndsWith(".css", StringComparison.OrdinalIgnoreCase) && string.Equals(file.Extension, ".map", StringComparison.OrdinalIgnoreCase))
+            } 
+            else if (file.Name.EndsWith(".css", StringComparison.OrdinalIgnoreCase) && string.Equals(file.Extension, ".map", StringComparison.OrdinalIgnoreCase))
             {
                 string output = Compiler.CompileFile(path).SourceMap;
 
