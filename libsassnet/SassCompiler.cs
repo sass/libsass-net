@@ -28,11 +28,6 @@ namespace LibSassNet
     {
         private readonly ISassInterface _sassInterface;
 
-        //static SassCompiler()
-        //{
-        //    AssemblyResolver.Initialize();
-        //}
-
         public SassCompiler()
         {
             _sassInterface = new SassInterface();
@@ -43,7 +38,7 @@ namespace LibSassNet
             _sassInterface = sassInterface;
         }
 
-        public string Compile(string source, OutputStyle outputStyle = OutputStyle.Nested, SourceCommentsMode sourceComments = SourceCommentsMode.Default, IEnumerable<string> includePaths = null)
+        public string Compile(string source, OutputStyle outputStyle = OutputStyle.Nested, SourceCommentsMode sourceComments = SourceCommentsMode.Default, string imagePath = "", IEnumerable<string> includePaths = null)
         {
             if (outputStyle != OutputStyle.Nested && outputStyle != OutputStyle.Compressed)
             {
@@ -58,7 +53,7 @@ namespace LibSassNet
                     OutputStyle = (int)outputStyle,
                     SourceCommentsMode = (int)sourceComments,
                     IncludePaths = includePaths != null ? String.Join(";", includePaths) : String.Empty,
-                    ImagePath = String.Empty
+                    ImagePath = imagePath
                 }
             };
 
@@ -72,7 +67,7 @@ namespace LibSassNet
             return context.OutputString;
         }
 
-        public CompileFileResult CompileFile(string inputPath, OutputStyle outputStyle = OutputStyle.Nested,  string sourceMapPath = null, SourceCommentsMode sourceComments = SourceCommentsMode.Default, IEnumerable<string> additionalIncludePaths = null)
+        public CompileFileResult CompileFile(string inputPath, OutputStyle outputStyle = OutputStyle.Nested,  string sourceMapPath = null, SourceCommentsMode sourceComments = SourceCommentsMode.Default, string imagePath = "", IEnumerable<string> additionalIncludePaths = null)
         {
             if (outputStyle != OutputStyle.Nested && outputStyle != OutputStyle.Compressed)
             {
@@ -94,7 +89,7 @@ namespace LibSassNet
                     OutputStyle = (int)outputStyle,
                     SourceCommentsMode = (int)sourceComments,
                     IncludePaths = String.Join(";", includePaths),
-                    ImagePath = String.Empty
+                    ImagePath = imagePath
                 },
                 OutputSourceMapFile = sourceMapPath
             };
