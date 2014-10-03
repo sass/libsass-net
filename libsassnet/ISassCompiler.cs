@@ -24,7 +24,7 @@ namespace LibSassNet
 {
     public interface ISassCompiler
     {
-        string Compile(string source, OutputStyle outputStyle = OutputStyle.Nested, SourceCommentsMode sourceComments = SourceCommentsMode.Default, IEnumerable<string> includePaths = null);
-        CompileFileResult CompileFile(string inputPath, OutputStyle outputStyle = OutputStyle.Nested, string sourceMapPath = null, SourceCommentsMode sourceComments = SourceCommentsMode.Default, IEnumerable<string> additionalIncludePaths = null);
+        string Compile(string source, OutputStyle outputStyle = OutputStyle.Nested, SourceCommentsMode sourceComments = SourceCommentsMode.Default, int precision = 5, IEnumerable<string> includePaths = null);
+        CompileFileResult CompileFile(string inputPath, OutputStyle outputStyle = OutputStyle.Nested, string sourceMapPath = null, SourceCommentsMode sourceComments = SourceCommentsMode.Default, int precision = 5, IEnumerable<string> additionalIncludePaths = null);
     }
 }
