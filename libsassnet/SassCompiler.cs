@@ -90,7 +90,8 @@ namespace LibSassNet
                     OutputStyle = (int)outputStyle,
                     SourceCommentsMode = (int)sourceComments,
                     IncludePaths = String.Join(";", includePaths),
-                    ImagePath = string.Empty
+                    ImagePath = string.Empty,
+                    Precision = precision
                 },
                 OutputSourceMapFile = sourceMapPath
             };

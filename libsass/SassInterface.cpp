@@ -85,6 +85,7 @@ namespace LibSassNet
 				ctx -> options.include_paths = MarshalString(sassFileContext -> Options -> IncludePaths);
 				ctx -> options.image_path = MarshalString(sassFileContext -> Options -> ImagePath);
 				ctx -> source_map_file = MarshalString(sassFileContext -> OutputSourceMapFile);
+				ctx -> options.precision = sassFileContext -> Options -> Precision;
 			}
 
 			// Compile SASS using context provided
