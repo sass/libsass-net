@@ -29,6 +29,7 @@ namespace LibSassNet
 		public:
 			property int OutputStyle;
 			property int SourceCommentsMode;
+			property int Precision;
 			property String^ IncludePaths;
 			property String^ ImagePath;
 	};

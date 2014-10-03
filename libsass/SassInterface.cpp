@@ -40,6 +40,7 @@ namespace LibSassNet
 				ctx -> options.source_comments = sassContext -> Options -> SourceCommentsMode;
 				ctx -> options.include_paths = MarshalString(sassContext -> Options -> IncludePaths);
 				ctx -> options.image_path = MarshalString(sassContext -> Options -> ImagePath);
+				ctx -> options.precision = sassContext -> Options -> Precision;
 			}
 
 			// Compile SASS using context provided
