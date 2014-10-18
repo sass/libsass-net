@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -28,7 +28,6 @@
     <ClCompile Include="native\context.cpp" />
     <ClCompile Include="native\contextualize.cpp" />
     <ClCompile Include="native\copy_c_str.cpp" />
-    <ClCompile Include="native\emscripten_wrapper.cpp" />
     <ClCompile Include="native\error_handling.cpp" />
     <ClCompile Include="native\eval.cpp" />
     <ClCompile Include="native\expand.cpp" />
@@ -36,18 +35,22 @@
     <ClCompile Include="native\file.cpp" />
     <ClCompile Include="native\functions.cpp" />
     <ClCompile Include="native\inspect.cpp" />
+    <ClCompile Include="native\node.cpp" />
     <ClCompile Include="native\output_compressed.cpp" />
     <ClCompile Include="native\output_nested.cpp" />
     <ClCompile Include="native\parser.cpp" />
     <ClCompile Include="native\prelexer.cpp" />
+    <ClCompile Include="native\remove_placeholders.cpp" />
     <ClCompile Include="native\sass.cpp" />
-    <ClCompile Include="native\sass2scss\sass2scss.cpp" />
+    <ClCompile Include="native\sass2scss.cpp" />
     <ClCompile Include="native\sass_interface.cpp" />
+    <ClCompile Include="native\sass_util.cpp" />
     <ClCompile Include="native\source_map.cpp" />
     <ClCompile Include="native\to_c.cpp" />
     <ClCompile Include="native\to_string.cpp" />
     <ClCompile Include="native\units.cpp" />
     <ClCompile Include="native\utf8_string.cpp" />
+    <ClCompile Include="native\util.cpp" />
     <ClCompile Include="SassInterface.cpp" />
     <ClCompile Include="StringToANSI.cpp" />
   </ItemGroup>
@@ -67,7 +70,6 @@
     <ClInclude Include="native\context.hpp" />
     <ClInclude Include="native\contextualize.hpp" />
     <ClInclude Include="native\copy_c_str.hpp" />
-    <ClInclude Include="native\emscripten_wrapper.hpp" />
     <ClInclude Include="native\environment.hpp" />
     <ClInclude Include="native\error_handling.hpp" />
     <ClInclude Include="native\eval.hpp" />
@@ -79,6 +81,7 @@
     <ClInclude Include="native\kwd_arg_macros.hpp" />
     <ClInclude Include="native\mapping.hpp" />
     <ClInclude Include="native\memory_manager.hpp" />
+    <ClInclude Include="native\node.hpp" />
     <ClInclude Include="native\operation.hpp" />
     <ClInclude Include="native\output_compressed.hpp" />
     <ClInclude Include="native\output_nested.hpp" />
@@ -86,16 +89,20 @@
     <ClInclude Include="native\paths.hpp" />
     <ClInclude Include="native\position.hpp" />
     <ClInclude Include="native\prelexer.hpp" />
+    <ClInclude Include="native\remove_placeholders.hpp" />
     <ClInclude Include="native\sass.h" />
-    <ClInclude Include="native\sass2scss\sass2scss.h" />
+    <ClInclude Include="native\sass2scss.h" />
     <ClInclude Include="native\sass_interface.h" />
+    <ClInclude Include="native\sass_util.hpp" />
     <ClInclude Include="native\source_map.hpp" />
     <ClInclude Include="native\subset_map.hpp" />
     <ClInclude Include="native\token.hpp" />
     <ClInclude Include="native\to_c.hpp" />
     <ClInclude Include="native\to_string.hpp" />
     <ClInclude Include="native\units.hpp" />
+    <ClInclude Include="native\utf8.h" />
     <ClInclude Include="native\utf8_string.hpp" />
+    <ClInclude Include="native\util.hpp" />
     <ClInclude Include="SassInterface.hpp" />
     <ClInclude Include="SassOptions.hpp" />
     <ClInclude Include="StringToANSI.hpp" />
@@ -109,28 +116,29 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
+    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>true</CLRSupport>

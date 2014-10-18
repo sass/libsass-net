@@ -84,7 +84,7 @@ namespace LibSassNet
 				ctx -> options.source_comments = sassFileContext -> Options -> SourceCommentsMode;
 				ctx -> options.include_paths = MarshalString(sassFileContext -> Options -> IncludePaths);
 				ctx -> options.image_path = MarshalString(sassFileContext -> Options -> ImagePath);
-				ctx -> source_map_file = MarshalString(sassFileContext -> OutputSourceMapFile);
+				ctx -> options.source_map_file = MarshalString(sassFileContext -> OutputSourceMapFile);
 				ctx -> options.precision = sassFileContext -> Options -> Precision;
 			}
 
