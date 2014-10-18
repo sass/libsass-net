@@ -1,5 +1,5 @@
 @echo off
-@SET Framework40Version=4.0
+@SET Framework40Version=4.5
 
 @if "%PathToMsBuild%"=="" (
   @for /F "tokens=1,2*" %%i in ('reg query "HKLM\SOFTWARE\Wow6432Node\Microsoft\MSBuild\ToolsVersions\%Framework40Version%" /v "MSBuildToolsPath"') DO (
