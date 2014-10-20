@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace LibSassNet
 {
@@ -84,7 +85,8 @@ namespace LibSassNet
 
             SassFileContext context = new SassFileContext
             {
-                InputPath = inputPath,
+                // libsass 3.0 expects utf8 path string, but strings in .NET are utf16, so we need to convert it
+                InputPath = Utf16ToUtf8(inputPath),
                 Options = new SassOptions
                 {
                     OutputStyle = (int)outputStyle,
@@ -104,6 +106,21 @@ namespace LibSassNet
             }
 
             return new CompileFileResult(context.OutputString, context.OutputSourceMap);
+        }
+
+        /// <summary>
+        /// Converts utf16 string to utf8
+        /// </summary>
+        /// <param name="utf16String"></param>
+        /// <returns></returns>
+        private static string Utf16ToUtf8(string utf16String)
+        {
+            // Get UTF16 bytes and convert UTF16 bytes to UTF8 bytes
+            var utf16Bytes = Encoding.Unicode.GetBytes(utf16String);
+            var utf8Bytes = Encoding.Convert(Encoding.Unicode, Encoding.UTF8, utf16Bytes);
+
+            // Return UTF8 bytes as ANSI string
+            return Encoding.Default.GetString(utf8Bytes);
         }
     }
 }
