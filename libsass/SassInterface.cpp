@@ -37,7 +37,7 @@ namespace LibSassNet
 			if (sassContext -> Options)
 			{
 				ctx -> options.output_style = sassContext -> Options -> OutputStyle;
-				ctx -> options.source_comments = sassContext -> Options -> SourceCommentsMode;
+				ctx -> options.source_comments = sassContext -> Options -> IncludeSourceComments;
 				ctx -> options.include_paths = MarshalString(sassContext -> Options -> IncludePaths);
 				ctx -> options.image_path = MarshalString(sassContext -> Options -> ImagePath);
 				ctx -> options.precision = sassContext -> Options -> Precision;
@@ -81,7 +81,7 @@ namespace LibSassNet
 			if (sassFileContext -> Options)
 			{
 				ctx -> options.output_style = sassFileContext -> Options -> OutputStyle;
-				ctx -> options.source_comments = sassFileContext -> Options -> SourceCommentsMode;
+				ctx -> options.source_comments = sassFileContext -> Options -> IncludeSourceComments;
 				ctx -> options.include_paths = MarshalString(sassFileContext -> Options -> IncludePaths);
 				ctx -> options.image_path = MarshalString(sassFileContext -> Options -> ImagePath);
 				ctx -> options.source_map_file = MarshalString(sassFileContext -> OutputSourceMapFile);

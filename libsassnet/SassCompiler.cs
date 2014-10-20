@@ -39,7 +39,7 @@ namespace LibSassNet
             _sassInterface = sassInterface;
         }
 
-        public string Compile(string source, OutputStyle outputStyle = OutputStyle.Nested, SourceCommentsMode sourceComments = SourceCommentsMode.Default, int precision = 5, IEnumerable<string> includePaths = null)
+        public string Compile(string source, OutputStyle outputStyle = OutputStyle.Nested, bool includeSourceComments = true, int precision = 5, IEnumerable<string> includePaths = null)
         {
             if (outputStyle != OutputStyle.Nested && outputStyle != OutputStyle.Compressed)
             {
@@ -52,7 +52,7 @@ namespace LibSassNet
                 Options = new SassOptions
                 {
                     OutputStyle = (int)outputStyle,
-                    SourceCommentsMode = (int)sourceComments,
+                    IncludeSourceComments = includeSourceComments,
                     IncludePaths = includePaths != null ? String.Join(";", includePaths) : String.Empty,
                     ImagePath = string.Empty,
                     Precision = precision
@@ -69,7 +69,7 @@ namespace LibSassNet
             return context.OutputString;
         }
 
-        public CompileFileResult CompileFile(string inputPath, OutputStyle outputStyle = OutputStyle.Nested,  string sourceMapPath = null, SourceCommentsMode sourceComments = SourceCommentsMode.Default, int precision = 5, IEnumerable<string> additionalIncludePaths = null)
+        public CompileFileResult CompileFile(string inputPath, OutputStyle outputStyle = OutputStyle.Nested,  string sourceMapPath = null, bool includeSourceComments = true, int precision = 5, IEnumerable<string> additionalIncludePaths = null)
         {
             if (outputStyle != OutputStyle.Nested && outputStyle != OutputStyle.Compressed)
             {
@@ -90,7 +90,7 @@ namespace LibSassNet
                 Options = new SassOptions
                 {
                     OutputStyle = (int)outputStyle,
-                    SourceCommentsMode = (int)sourceComments,
+                    IncludeSourceComments = includeSourceComments,
                     IncludePaths = String.Join(";", includePaths),
                     ImagePath = string.Empty,
                     Precision = precision

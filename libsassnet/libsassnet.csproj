@@ -45,7 +45,6 @@
     <Compile Include="SassCompileException.cs" />
     <Compile Include="SassCompiler.cs" />
     <Compile Include="SassToScssConverter.cs" />
-    <Compile Include="SourceCommentsMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libsass\LibSass.vcxproj">

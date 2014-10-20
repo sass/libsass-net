@@ -46,7 +46,6 @@
     <Compile Include="SassCompileException.cs" />
     <Compile Include="SassCompiler.cs" />
     <Compile Include="SassToScssConverter.cs" />
-    <Compile Include="SourceCommentsMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libsassnet.x64.nuspec" />
