@@ -2,7 +2,7 @@
 <package>
 	<metadata>
 		<id>$id$</id>
-		<version>3.0</version>
+		<version>3.0.1</version>
 		<authors>Darren Kopp</authors>
     <owners>Darren Kopp</owners>
 		<licenseUrl>https://github.com/darrenkopp/libsass-net/blob/master/LICENSE</licenseUrl>
