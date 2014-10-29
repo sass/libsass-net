@@ -1,16 +1,24 @@
 @echo off
-@SET Framework40Version=4.5
+@SET Framework40Version=12.0
 
-@if "%PathToMsBuild%"=="" (
+@if "%PathToMsBuild32%"=="" (
   @for /F "tokens=1,2*" %%i in ('reg query "HKLM\SOFTWARE\Wow6432Node\Microsoft\MSBuild\ToolsVersions\%Framework40Version%" /v "MSBuildToolsPath"') DO (
     if "%%i" == "MSBuildToolsPath" (
-      @SET "PathToMsBuild=%%k"
+      @SET "PathToMsBuild32=%%k"
     )
   )
 )
 
-%PathToMsBuild%\MSBuild.exe libsass-net.sln /nologo /v:n /m:4 /p:Configuration=Release
-%PathToMsBuild%\MSBuild.exe libsass-net.sln /nologo /v:n /m:4 /p:Configuration=Release /p:Platform=x64
+@if "%PathToMsBuild64%"=="" (
+  @for /F "tokens=1,2*" %%i in ('reg query "HKLM\SOFTWARE\Microsoft\MSBuild\ToolsVersions\%Framework40Version%" /v "MSBuildToolsPath"') DO (
+    if "%%i" == "MSBuildToolsPath" (
+      @SET "PathToMsBuild64=%%k"
+    )
+  )
+)
+
+"%PathToMsBuild32%\MSBuild.exe" libsass-net.sln /nologo /v:n /m:4 /p:Configuration=Release
+"%PathToMsBuild64%\MSBuild.exe" libsass-net.sln /nologo /v:n /m:4 /p:Configuration=Release /p:Platform=x64
 
 .nuget\NuGet Pack "libsassnet\libsassnet.csproj" -Properties Configuration=Release
 .nuget\NuGet Pack "libsassnet.Web\libsassnet.Web.csproj" -Properties Configuration=Release
