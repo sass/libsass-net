@@ -69,7 +69,7 @@ namespace LibSassNet
             return context.OutputString;
         }
 
-        public CompileFileResult CompileFile(string inputPath, OutputStyle outputStyle = OutputStyle.Nested,  string sourceMapPath = null, bool includeSourceComments = true, int precision = 5, IEnumerable<string> additionalIncludePaths = null)
+        public CompileFileResult CompileFile(string inputPath, OutputStyle outputStyle = OutputStyle.Nested, string sourceMapPath = null, bool includeSourceComments = true, int precision = 5, IEnumerable<string> additionalIncludePaths = null)
         {
             if (outputStyle != OutputStyle.Nested && outputStyle != OutputStyle.Compressed)
             {
