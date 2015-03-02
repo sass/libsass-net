@@ -1,0 +1,13 @@
+configuration:
+  - Debug
+  - Release
+
+install:
+  - git submodule update --init --recursive
+
+before_build:
+  - nuget restore
+
+build:
+  verbosity: minimal
+  project: libsass-net.sln
