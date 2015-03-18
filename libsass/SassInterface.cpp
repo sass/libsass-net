@@ -20,6 +20,7 @@
 
 #include <exception>
 #include "native\sass_interface.h"
+#include "native\sass2scss.h"
 #include "StringToANSI.hpp"
 #include "SassInterface.hpp"
 
@@ -124,7 +125,7 @@ namespace LibSassNet
 		{
 			sourceText = MarshalString(context->SourceText);
 
-			char* result = Sass::sass2scss(sourceText, 128);
+			char* result = sass2scss(sourceText, 128);
 			context->OutputText = gcnew String(result);
 
 			FreeString(result);
