@@ -48,7 +48,9 @@
     <Compile Include="SassToScssConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="libsassnet.x64.nuspec" />
+    <None Include="libsassnet.x64.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libsass\LibSass.vcxproj">

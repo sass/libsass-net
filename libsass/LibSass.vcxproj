@@ -19,114 +19,43 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CallbackMarshaller.cpp" />
-    <ClCompile Include="callback_manager.cpp" />
     <ClCompile Include="native\ast.cpp" />
     <ClCompile Include="native\base64vlq.cpp" />
     <ClCompile Include="native\bind.cpp" />
-    <ClCompile Include="native\cencode.c">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\constants.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\context.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\contextualize.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\copy_c_str.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\error_handling.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\eval.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\expand.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\extend.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\file.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\functions.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\inspect.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\json.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\node.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\output_compressed.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\output_nested.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\parser.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\prelexer.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\remove_placeholders.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass2scss.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass_interface.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass_context.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass_functions.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass_values.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass_util.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\source_map.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\to_c.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\to_string.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\units.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\utf8_string.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\util.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="SassInterface.cpp" />
-    <ClCompile Include="StringToANSI.cpp" />
+    <ClCompile Include="native\cencode.c" />
+    <ClCompile Include="native\constants.cpp" />
+    <ClCompile Include="native\context.cpp" />
+    <ClCompile Include="native\contextualize.cpp" />
+    <ClCompile Include="native\copy_c_str.cpp" />
+    <ClCompile Include="native\error_handling.cpp" />
+    <ClCompile Include="native\eval.cpp" />
+    <ClCompile Include="native\expand.cpp" />
+    <ClCompile Include="native\extend.cpp" />
+    <ClCompile Include="native\file.cpp" />
+    <ClCompile Include="native\functions.cpp" />
+    <ClCompile Include="native\inspect.cpp" />
+    <ClCompile Include="native\json.cpp" />
+    <ClCompile Include="native\node.cpp" />
+    <ClCompile Include="native\output_compressed.cpp" />
+    <ClCompile Include="native\output_nested.cpp" />
+    <ClCompile Include="native\parser.cpp" />
+    <ClCompile Include="native\prelexer.cpp" />
+    <ClCompile Include="native\remove_placeholders.cpp" />
+    <ClCompile Include="native\sass.cpp" />
+    <ClCompile Include="native\sass2scss.cpp" />
+    <ClCompile Include="native\sass_interface.cpp" />
+    <ClCompile Include="native\sass_context.cpp" />
+    <ClCompile Include="native\sass_functions.cpp" />
+    <ClCompile Include="native\sass_values.cpp" />
+    <ClCompile Include="native\sass_util.cpp" />
+    <ClCompile Include="native\source_map.cpp" />
+    <ClCompile Include="native\to_c.cpp" />
+    <ClCompile Include="native\to_string.cpp" />
+    <ClCompile Include="native\units.cpp" />
+    <ClCompile Include="native\utf8_string.cpp" />
+    <ClCompile Include="native\util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CallbackMarshaller.hpp" />
-    <ClInclude Include="callback_manager.hpp" />
-    <ClInclude Include="ISassInterface.hpp" />
     <ClInclude Include="native\ast.hpp" />
     <ClInclude Include="native\ast_def_macros.hpp" />
     <ClInclude Include="native\ast_factory.hpp" />
@@ -180,9 +109,6 @@
     <ClInclude Include="native\utf8\unchecked.h" />
     <ClInclude Include="native\utf8_string.hpp" />
     <ClInclude Include="native\util.hpp" />
-    <ClInclude Include="SassInterface.hpp" />
-    <ClInclude Include="SassOptions.hpp" />
-    <ClInclude Include="StringToANSI.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3A1CF114-A5C0-4BA2-8C0D-47001E361718}</ProjectGuid>
@@ -195,14 +121,14 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -210,7 +136,7 @@
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -218,7 +144,7 @@
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -266,6 +192,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -281,6 +208,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -298,7 +226,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-      <CompileAsManaged>true</CompileAsManaged>
+      <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>false</ExceptionHandling>
     </ClCompile>
     <Link>
@@ -319,7 +247,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
-      <CompileAsManaged>true</CompileAsManaged>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
