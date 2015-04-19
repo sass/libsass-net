@@ -54,7 +54,6 @@ namespace LibSassNet
                     OutputStyle = (int)outputStyle,
                     IncludeSourceComments = includeSourceComments,
                     IncludePaths = includePaths != null ? String.Join(";", includePaths) : String.Empty,
-                    ImagePath = string.Empty,
                     Precision = precision
                 }
             };
@@ -92,7 +91,6 @@ namespace LibSassNet
                     OutputStyle = (int)outputStyle,
                     IncludeSourceComments = includeSourceComments,
                     IncludePaths = String.Join(";", includePaths),
-                    ImagePath = string.Empty,
                     Precision = precision
                 },
                 OutputSourceMapFile = sourceMapPath

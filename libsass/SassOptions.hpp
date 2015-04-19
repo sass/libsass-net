@@ -31,7 +31,6 @@ namespace LibSassNet
 			property bool IncludeSourceComments;
 			property int Precision;
 			property String^ IncludePaths;
-			property String^ ImagePath;
 	};
 
 	public ref class SassContext
