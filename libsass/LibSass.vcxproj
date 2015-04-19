@@ -27,99 +27,48 @@
     <ClCompile Include="native\cencode.c">
       <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
-    <ClCompile Include="native\constants.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
+    <ClCompile Include="native\constants.cpp" />
     <ClCompile Include="native\context.cpp">
       <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
-    <ClCompile Include="native\contextualize.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\copy_c_str.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\error_handling.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\eval.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\expand.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\extend.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\file.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
+    <ClCompile Include="native\contextualize.cpp" />
+    <ClCompile Include="native\contextualize_eval.cpp" />
+    <ClCompile Include="native\error_handling.cpp" />
+    <ClCompile Include="native\eval.cpp" />
+    <ClCompile Include="native\expand.cpp" />
+    <ClCompile Include="native\cssize.cpp" />
+    <ClCompile Include="native\listize.cpp" />
+    <ClCompile Include="native\extend.cpp" />
+    <ClCompile Include="native\file.cpp" />
     <ClCompile Include="native\functions.cpp">
       <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
-    <ClCompile Include="native\inspect.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
+    <ClCompile Include="native\inspect.cpp" />
+    <ClCompile Include="native\json.cpp" >
+     <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
-    <ClCompile Include="native\json.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\node.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\output_compressed.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\output_nested.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\parser.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\prelexer.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\remove_placeholders.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass2scss.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass_interface.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass_context.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass_functions.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass_values.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\sass_util.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\source_map.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\to_c.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\to_string.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\units.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\utf8_string.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
-    <ClCompile Include="native\util.cpp">
-      <CompileAsManaged>false</CompileAsManaged>
-    </ClCompile>
+    <ClCompile Include="native\node.cpp" />
+    <ClCompile Include="native\emitter.cpp" />
+    <ClCompile Include="native\output.cpp" />
+    <ClCompile Include="native\parser.cpp" />
+    <ClCompile Include="native\plugins.cpp" />
+    <ClCompile Include="native\position.cpp" />
+    <ClCompile Include="native\lexer.cpp" />
+    <ClCompile Include="native\prelexer.cpp" />
+    <ClCompile Include="native\remove_placeholders.cpp" />
+    <ClCompile Include="native\sass.cpp" />
+    <ClCompile Include="native\sass2scss.cpp" />
+    <ClCompile Include="native\sass_interface.cpp" />
+    <ClCompile Include="native\sass_context.cpp" />
+    <ClCompile Include="native\sass_functions.cpp" />
+    <ClCompile Include="native\sass_values.cpp" />
+    <ClCompile Include="native\sass_util.cpp" />
+    <ClCompile Include="native\source_map.cpp" />
+    <ClCompile Include="native\to_c.cpp" />
+    <ClCompile Include="native\to_string.cpp" />
+    <ClCompile Include="native\units.cpp" />
+    <ClCompile Include="native\utf8_string.cpp" />
+    <ClCompile Include="native\util.cpp" />
     <ClCompile Include="SassInterface.cpp" />
     <ClCompile Include="StringToANSI.cpp" />
   </ItemGroup>
@@ -138,12 +87,14 @@
     <ClInclude Include="native\constants.hpp" />
     <ClInclude Include="native\context.hpp" />
     <ClInclude Include="native\contextualize.hpp" />
-    <ClInclude Include="native\copy_c_str.hpp" />
+    <ClInclude Include="native\contextualize_eval.hpp" />
     <ClInclude Include="native\debug.hpp" />
     <ClInclude Include="native\environment.hpp" />
     <ClInclude Include="native\error_handling.hpp" />
     <ClInclude Include="native\eval.hpp" />
     <ClInclude Include="native\expand.hpp" />
+    <ClInclude Include="native\cssize.hpp" />
+    <ClInclude Include="native\listize.hpp" />
     <ClInclude Include="native\extend.hpp" />
     <ClInclude Include="native\file.hpp" />
     <ClInclude Include="native\functions.hpp" />
@@ -154,11 +105,13 @@
     <ClInclude Include="native\memory_manager.hpp" />
     <ClInclude Include="native\node.hpp" />
     <ClInclude Include="native\operation.hpp" />
-    <ClInclude Include="native\output_compressed.hpp" />
-    <ClInclude Include="native\output_nested.hpp" />
+    <ClInclude Include="native\emitter.hpp" />
+    <ClInclude Include="native\output.hpp" />
     <ClInclude Include="native\parser.hpp" />
+    <ClInclude Include="native\plugins.hpp" />
     <ClInclude Include="native\paths.hpp" />
     <ClInclude Include="native\position.hpp" />
+    <ClInclude Include="native\lexer.hpp" />
     <ClInclude Include="native\prelexer.hpp" />
     <ClInclude Include="native\remove_placeholders.hpp" />
     <ClInclude Include="native\sass.h" />
@@ -194,7 +147,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -209,7 +162,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">

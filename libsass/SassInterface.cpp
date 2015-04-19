@@ -40,7 +40,6 @@ namespace LibSassNet
 				ctx -> options.output_style = sassContext -> Options -> OutputStyle;
 				ctx -> options.source_comments = sassContext -> Options -> IncludeSourceComments;
 				ctx -> options.include_paths = MarshalString(sassContext -> Options -> IncludePaths);
-				ctx -> options.image_path = MarshalString(sassContext -> Options -> ImagePath);
 				ctx -> options.precision = sassContext -> Options -> Precision;
 			}
 
@@ -66,7 +65,6 @@ namespace LibSassNet
 		{
 			// Free resources
 			FreeString(ctx -> options.include_paths);
-			FreeString(ctx -> options.image_path);
 			FreeConstString(ctx -> source_string);
 			sass_free_context(ctx);
 		}
@@ -84,7 +82,6 @@ namespace LibSassNet
 				ctx -> options.output_style = sassFileContext -> Options -> OutputStyle;
 				ctx -> options.source_comments = sassFileContext -> Options -> IncludeSourceComments;
 				ctx -> options.include_paths = MarshalString(sassFileContext -> Options -> IncludePaths);
-				ctx -> options.image_path = MarshalString(sassFileContext -> Options -> ImagePath);
 				ctx -> options.source_map_file = MarshalString(sassFileContext -> OutputSourceMapFile);
 				ctx -> options.precision = sassFileContext -> Options -> Precision;
 			}
@@ -112,7 +109,6 @@ namespace LibSassNet
 		{
 			// Free resources
 			FreeString(ctx -> options.include_paths);
-			FreeString(ctx -> options.image_path);
 			FreeString(ctx -> input_path);
 			sass_free_file_context(ctx);
 		}
