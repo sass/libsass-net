@@ -6,3 +6,16 @@ libsass-net
 A lightweight wrapper around libsass
 
 Requires [Visual C++ Redistributable](http://www.microsoft.com/en-us/download/details.aspx?id=40784)
+
+Versioning
+----------
+
+From now on, we will try to maintain the following versioning schema:
+
+LibSassNet's version will be the same as http://github.com/sass/LibSass
+
+LibSass.Web's version is independant of LibSass and will be following [SemVer](http://semver.org/)
+
+Current version LibSassNet : 3.2.2
+Currently implemented version of LibSass = 3.2.2
+Current version of LibSassNet.Web 2.1.2
