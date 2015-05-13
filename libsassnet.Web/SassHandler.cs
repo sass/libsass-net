@@ -30,7 +30,7 @@ namespace LibSassNet.Web
 
         public void ProcessRequest(HttpContext context)
         {
-            string path = context.Server.MapPath(String.Format("~{0}", context.Request.Path));
+            string path = context.Server.MapPath(context.Request.AppRelativeCurrentExecutionFilePath);
             var file = new FileInfo(path);
             if (!file.Name.StartsWith("_") && string.Equals(file.Extension, ".scss", StringComparison.OrdinalIgnoreCase))
             {
