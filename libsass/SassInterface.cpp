@@ -31,8 +31,8 @@ namespace LibSassNet
 {
     int SassInterface::Compile(SassContext^ sassContext)
     {
-        char* sourceString = MarshalString(sassContext->SourceString);
         char* includePaths = MarshalString(sassContext->Options->IncludePaths);
+        char* sourceString = MarshalString(sassContext->SourceString);
         struct Sass_Data_Context* ctx;
 
         try
@@ -53,6 +53,8 @@ namespace LibSassNet
             sassContext->ErrorStatus = sass_context_get_error_status(ctx_out);
             sassContext->ErrorMessage = gcnew String(sass_context_get_error_message(ctx_out));
             sassContext->OutputString = gcnew String(sass_context_get_output_string(ctx_out));
+
+            return 0;
         }
         catch (exception& e)
         {
@@ -71,7 +73,7 @@ namespace LibSassNet
         }
     }
 
-    Sass_Output_Style GetOutputStyle(int raw)
+    Sass_Output_Style SassInterface::GetOutputStyle(int raw)
     {
         switch (raw)
         {

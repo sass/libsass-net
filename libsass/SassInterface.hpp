@@ -28,6 +28,8 @@ namespace LibSassNet
 			virtual int Compile(SassContext^ sassContext);
 			virtual int Compile(SassFileContext^ sassFileContext);
 			virtual void Convert(SassToScssConversionContext^ context);
+        private:
+            Sass_Output_Style GetOutputStyle(int raw);
 			// Folder context isn't implemented in core libsass library now
 			/*virtual int Compile(SassFolderContext^ sassFolderContext);*/
 	};

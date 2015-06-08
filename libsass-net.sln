@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibSass", "libsass\LibSass.vcxproj", "{3A1CF114-A5C0-4BA2-8C0D-47001E361718}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libsassnet.x64", "libsassnet\libsassnet.x64.csproj", "{14E9159A-0CCD-4277-A526-CC86E313E5D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libsassnet.Web.x64", "libsassnet.Web\libsassnet.Web.x64.csproj", "{76A1D000-1BE5-49DD-A54C-B11115F2CD8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libsassnet.Tests", "libsassnet.Tests\libsassnet.Tests.csproj", "{E8696982-9738-4F73-B91F-6F083044937B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +85,18 @@ Global
 		{76A1D000-1BE5-49DD-A54C-B11115F2CD8D}.Release|Win32.ActiveCfg = Release|x64
 		{76A1D000-1BE5-49DD-A54C-B11115F2CD8D}.Release|x64.ActiveCfg = Release|x64
 		{76A1D000-1BE5-49DD-A54C-B11115F2CD8D}.Release|x64.Build.0 = Release|x64
+		{E8696982-9738-4F73-B91F-6F083044937B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8696982-9738-4F73-B91F-6F083044937B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8696982-9738-4F73-B91F-6F083044937B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E8696982-9738-4F73-B91F-6F083044937B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E8696982-9738-4F73-B91F-6F083044937B}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{E8696982-9738-4F73-B91F-6F083044937B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E8696982-9738-4F73-B91F-6F083044937B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8696982-9738-4F73-B91F-6F083044937B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8696982-9738-4F73-B91F-6F083044937B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E8696982-9738-4F73-B91F-6F083044937B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E8696982-9738-4F73-B91F-6F083044937B}.Release|Win32.ActiveCfg = Release|Any CPU
+		{E8696982-9738-4F73-B91F-6F083044937B}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -28,21 +28,21 @@ namespace LibSassNet
 {
 	char* MarshalString(String^ s)
 	{
-		return (char*) ((Marshal::StringToHGlobalAnsi (s)).ToPointer());
+        return (char*) ((Marshal::StringToCoTaskMemAnsi(s)).ToPointer());
 	}
 
 	void FreeString(const char* p)
 	{
-		if (p) Marshal::FreeHGlobal (IntPtr ((void *) p));
+        if (p) Marshal::FreeCoTaskMem(IntPtr((void *) p));
 	}
 
 	const char* MarshalConstString(String^ s)
 	{
-		return (const char*) ((Marshal::StringToHGlobalAnsi (s)).ToPointer());
+        return (const char*) ((Marshal::StringToCoTaskMemAnsi(s)).ToPointer());
 	}
 
 	void FreeConstString(const char* p)
 	{
-		if (p) Marshal::FreeHGlobal (IntPtr ((void *) p));
+        if (p) Marshal::FreeCoTaskMem(IntPtr((void *) p));
 	}
 }
