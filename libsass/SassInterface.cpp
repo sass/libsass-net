@@ -23,166 +23,179 @@
 #include "native\sass2scss.h"
 #include "StringToANSI.hpp"
 #include "SassInterface.hpp"
+#include "native\sass_context.h"
 
 using namespace std;
 
 namespace LibSassNet
 {
-	int SassInterface::Compile(SassContext^ sassContext)
-	{
-		sass_context* ctx = sass_new_context();
-		try
-		{
-			// Copy fields from managed structure to unmanaged
-			ctx -> source_string = MarshalConstString(sassContext -> SourceString);
-			if (sassContext -> Options)
-			{
-				ctx -> options.output_style = sassContext -> Options -> OutputStyle;
-				ctx -> options.source_comments = sassContext -> Options -> IncludeSourceComments;
-				ctx -> options.include_paths = MarshalString(sassContext -> Options -> IncludePaths);
-				ctx -> options.precision = sassContext -> Options -> Precision;
-			}
+    int SassInterface::Compile(SassContext^ sassContext)
+    {
+        char* sourceString = MarshalString(sassContext->SourceString);
+        char* includePaths = MarshalString(sassContext->Options->IncludePaths);
+        struct Sass_Data_Context* ctx;
 
-			// Compile SASS using context provided
-			int result = sass_compile(ctx);
+        try
+        {
+            ctx = sass_make_data_context(sourceString);
+            struct Sass_Options* options = sass_make_options();
+            struct Sass_Context* ctx_out = sass_data_context_get_context(ctx);
 
-			// Copy resulting fields from unmanaged structure to managed
-			sassContext -> OutputString = gcnew String(ctx -> output_string);
-			sassContext -> ErrorStatus = !!ctx -> error_status;
-			sassContext -> ErrorMessage = gcnew String(ctx -> error_message);
+            // copy options around
+            sass_option_set_output_style(options, GetOutputStyle(sassContext->Options->OutputStyle));
+            sass_option_set_source_comments(options, sassContext->Options->IncludeSourceComments);
+            sass_option_set_precision(options, sassContext->Options->Precision);
+            sass_option_set_include_path(options, includePaths);
+            sass_option_set_omit_source_map_url(options, true);
 
-			return result;
-		}
-		catch (exception& e)
-		{
-			throw gcnew Exception(gcnew String(e.what()));
-		}
-		catch (...)
-		{
-			throw gcnew Exception("Unhandled exception in native code");
-		}
-		finally
-		{
-			// Free resources
-			FreeString(ctx -> options.include_paths);
-			FreeConstString(ctx -> source_string);
-			sass_free_context(ctx);
-		}
-	}
+            sass_compile_data_context(ctx);
 
-	int SassInterface::Compile(SassFileContext^ sassFileContext)
-	{
-		sass_file_context* ctx = sass_new_file_context();
-		try
-		{
-			// Copy fields from managed structure to unmanaged
-			ctx -> input_path = MarshalString(sassFileContext -> InputPath);
-			if (sassFileContext -> Options)
-			{
-				ctx -> options.output_style = sassFileContext -> Options -> OutputStyle;
-				ctx -> options.source_comments = sassFileContext -> Options -> IncludeSourceComments;
-				ctx -> options.include_paths = MarshalString(sassFileContext -> Options -> IncludePaths);
-				ctx -> options.source_map_file = MarshalString(sassFileContext -> OutputSourceMapFile);
-				ctx -> options.precision = sassFileContext -> Options -> Precision;
-			}
+            sassContext->ErrorStatus = sass_context_get_error_status(ctx_out);
+            sassContext->ErrorMessage = gcnew String(sass_context_get_error_message(ctx_out));
+            sassContext->OutputString = gcnew String(sass_context_get_output_string(ctx_out));
+        }
+        catch (exception& e)
+        {
+            throw gcnew Exception(gcnew String(e.what()));
+        }
+        catch (...)
+        {
+            throw gcnew Exception("Unhandled exception in native code");
+        }
+        finally
+        {
+            // Free resources
+            FreeString(includePaths);
+            FreeString(sourceString);
+            sass_delete_data_context(ctx);
+        }
+    }
 
-			// Compile SASS using context provided
-			int result = sass_compile_file(ctx);
+    Sass_Output_Style GetOutputStyle(int raw)
+    {
+        switch (raw)
+        {
+        case 0: return SASS_STYLE_NESTED;
+        case 1: return SASS_STYLE_EXPANDED;
+        case 2: return SASS_STYLE_COMPACT;
+        case 3: return SASS_STYLE_COMPRESSED;
+        default: return SASS_STYLE_NESTED;
+        }
+    }
 
-			// Copy resulting fields from unmanaged structure to managed
-			sassFileContext -> OutputString = gcnew String(ctx -> output_string);
-			sassFileContext -> OutputSourceMap = gcnew String(ctx -> source_map_string);
-			sassFileContext -> ErrorStatus = !!ctx -> error_status;
-			sassFileContext -> ErrorMessage = gcnew String(ctx -> error_message);
+    int SassInterface::Compile(SassFileContext^ sassFileContext)
+    {
+        sass_file_context* ctx = sass_new_file_context();
+        try
+        {
+            // Copy fields from managed structure to unmanaged
+            ctx->input_path = MarshalString(sassFileContext->InputPath);
+            if (sassFileContext->Options)
+            {
+                ctx->options.output_style = sassFileContext->Options->OutputStyle;
+                ctx->options.source_comments = sassFileContext->Options->IncludeSourceComments;
+                ctx->options.include_paths = MarshalString(sassFileContext->Options->IncludePaths);
+                ctx->options.source_map_file = MarshalString(sassFileContext->OutputSourceMapFile);
+                ctx->options.precision = sassFileContext->Options->Precision;
+            }
 
-			return result;
-		}
-		catch (exception& e)
-		{
-			throw gcnew Exception(gcnew String(e.what()));
-		}
-		catch (...)
-		{
-			throw gcnew Exception("Unhandled exception in native code");
-		}
-		finally
-		{
-			// Free resources
-			FreeString(ctx -> options.include_paths);
-			FreeString(ctx -> input_path);
-			sass_free_file_context(ctx);
-		}
-	}
+            // Compile SASS using context provided
+            int result = sass_compile_file(ctx);
 
-	void SassInterface::Convert(SassToScssConversionContext^ context)
-	{
-		char* sourceText;
-		try 
-		{
-			sourceText = MarshalString(context->SourceText);
+            // Copy resulting fields from unmanaged structure to managed
+            sassFileContext->OutputString = gcnew String(ctx->output_string);
+            sassFileContext->OutputSourceMap = gcnew String(ctx->source_map_string);
+            sassFileContext->ErrorStatus = !!ctx->error_status;
+            sassFileContext->ErrorMessage = gcnew String(ctx->error_message);
 
-			char* result = sass2scss(sourceText, 128);
-			context->OutputText = gcnew String(result);
+            return result;
+        }
+        catch (exception& e)
+        {
+            throw gcnew Exception(gcnew String(e.what()));
+        }
+        catch (...)
+        {
+            throw gcnew Exception("Unhandled exception in native code");
+        }
+        finally
+        {
+            // Free resources
+            FreeString(ctx->options.include_paths);
+            FreeString(ctx->input_path);
+            sass_free_file_context(ctx);
+        }
+    }
 
-			FreeString(result);
-		}
-		catch (exception& e)
-		{
-			throw gcnew Exception(gcnew String(e.what()));
-		}
-		catch (...)
-		{
-			throw gcnew Exception("Unhandled exception in native code");
-		}
-		finally 
-		{
-			FreeString(sourceText);
-		}
-	}
+    void SassInterface::Convert(SassToScssConversionContext^ context)
+    {
+        char* sourceText;
+        try
+        {
+            sourceText = MarshalString(context->SourceText);
 
-	// Folder context isn't implemented in core libsass library now
-	/*int SassInterface::Compile(SassFolderContext^ sassFolderContext)
-	{
-		sass_folder_context* ctx = sass_new_folder_context();
-		try
-		{
-			// Copy fields from managed structure to unmanaged
-			ctx -> search_path = MarshalString(sassFolderContext -> SearchPath);
-			//ctx -> output_path = MarshalString(sassFolderContext -> OutputPath);
-			if (sassFolderContext -> Options)
-			{
-				ctx -> options.output_style = sassFolderContext -> Options -> OutputStyle;
-				ctx -> options.source_comments = sassFolderContext -> Options -> SourceComments;
-				ctx -> options.include_paths = MarshalString(sassFolderContext -> Options -> IncludePaths);
-				ctx -> options.image_path = MarshalString(sassFolderContext -> Options -> ImagePath);
-			}
+            char* result = sass2scss(sourceText, 128);
+            context->OutputText = gcnew String(result);
 
-			// Compile SASS using context provided
-			int result = sass_compile_folder(ctx);
+            FreeString(result);
+        }
+        catch (exception& e)
+        {
+            throw gcnew Exception(gcnew String(e.what()));
+        }
+        catch (...)
+        {
+            throw gcnew Exception("Unhandled exception in native code");
+        }
+        finally
+        {
+            FreeString(sourceText);
+        }
+    }
 
-			// Copy resulting fields from unmanaged structure to managed
-			//sassFolderContext -> OutputPath = gcnew String(ctx -> output_path);
-			sassFolderContext -> ErrorStatus = !!ctx -> error_status;
-			sassFolderContext -> ErrorMessage = gcnew String(ctx -> error_message);
+    // Folder context isn't implemented in core libsass library now
+    /*int SassInterface::Compile(SassFolderContext^ sassFolderContext)
+    {
+    sass_folder_context* ctx = sass_new_folder_context();
+    try
+    {
+    // Copy fields from managed structure to unmanaged
+    ctx -> search_path = MarshalString(sassFolderContext -> SearchPath);
+    //ctx -> output_path = MarshalString(sassFolderContext -> OutputPath);
+    if (sassFolderContext -> Options)
+    {
+    ctx -> options.output_style = sassFolderContext -> Options -> OutputStyle;
+    ctx -> options.source_comments = sassFolderContext -> Options -> SourceComments;
+    ctx -> options.include_paths = MarshalString(sassFolderContext -> Options -> IncludePaths);
+    ctx -> options.image_path = MarshalString(sassFolderContext -> Options -> ImagePath);
+    }
 
-			return result;
-		}
-		catch (exception& e)
-		{
-			throw gcnew Exception(gcnew String(e.what()));
-		}
-		catch (...)
-		{
-			throw gcnew Exception("Unhandled exception in native code");
-		}
-		finally
-		{
-			// Free resources
-			FreeString(ctx -> options.include_paths);
-			FreeString(ctx -> options.image_path);
-			//FreeString(ctx -> output_path);
-			FreeString(ctx -> search_path);
-			sass_free_folder_context(ctx);
-		}
-	}*/
+    // Compile SASS using context provided
+    int result = sass_compile_folder(ctx);
+
+    // Copy resulting fields from unmanaged structure to managed
+    //sassFolderContext -> OutputPath = gcnew String(ctx -> output_path);
+    sassFolderContext -> ErrorStatus = !!ctx -> error_status;
+    sassFolderContext -> ErrorMessage = gcnew String(ctx -> error_message);
+
+    return result;
+    }
+    catch (exception& e)
+    {
+    throw gcnew Exception(gcnew String(e.what()));
+    }
+    catch (...)
+    {
+    throw gcnew Exception("Unhandled exception in native code");
+    }
+    finally
+    {
+    // Free resources
+    FreeString(ctx -> options.include_paths);
+    FreeString(ctx -> options.image_path);
+    //FreeString(ctx -> output_path);
+    FreeString(ctx -> search_path);
+    sass_free_folder_context(ctx);
+    }
+    }*/
 }
