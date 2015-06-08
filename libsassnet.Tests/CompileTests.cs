@@ -17,5 +17,12 @@ namespace LibSassNet.Tests
             var response = Compiler.Compile("body { color: red; }");
             Assert.NotEmpty(response);
         }
+
+        [Fact]
+        public void can_compile_file()
+        {
+            var response = Compiler.CompileFile("example.scss", includeSourceComments: false);
+            Assert.NotEmpty(response.CSS);
+        }
     }
 }

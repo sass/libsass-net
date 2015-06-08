@@ -87,30 +87,31 @@ namespace LibSassNet
 
     int SassInterface::Compile(SassFileContext^ sassFileContext)
     {
-        sass_file_context* ctx = sass_new_file_context();
+        char* includePaths = MarshalString(sassFileContext->Options->IncludePaths);
+        char* mapFile = MarshalString(sassFileContext->OutputSourceMapFile);
+        char* inputPath = MarshalString(sassFileContext->InputPath);
+
+        struct Sass_File_Context* ctx;
         try
         {
-            // Copy fields from managed structure to unmanaged
-            ctx->input_path = MarshalString(sassFileContext->InputPath);
-            if (sassFileContext->Options)
-            {
-                ctx->options.output_style = sassFileContext->Options->OutputStyle;
-                ctx->options.source_comments = sassFileContext->Options->IncludeSourceComments;
-                ctx->options.include_paths = MarshalString(sassFileContext->Options->IncludePaths);
-                ctx->options.source_map_file = MarshalString(sassFileContext->OutputSourceMapFile);
-                ctx->options.precision = sassFileContext->Options->Precision;
-            }
+            ctx = sass_make_file_context(inputPath);
+            struct Sass_Options* options = sass_make_options();
+            struct Sass_Context* ctx_out = sass_file_context_get_context(ctx);
 
-            // Compile SASS using context provided
-            int result = sass_compile_file(ctx);
+            // copy options around
+            sass_option_set_output_style(options, GetOutputStyle(sassFileContext->Options->OutputStyle));
+            sass_option_set_source_comments(options, sassFileContext->Options->IncludeSourceComments);
+            sass_option_set_precision(options, sassFileContext->Options->Precision);
+            sass_option_set_include_path(options, includePaths);
+            sass_option_set_omit_source_map_url(options, true);
+            sass_option_set_source_map_file(options, mapFile);
 
-            // Copy resulting fields from unmanaged structure to managed
-            sassFileContext->OutputString = gcnew String(ctx->output_string);
-            sassFileContext->OutputSourceMap = gcnew String(ctx->source_map_string);
-            sassFileContext->ErrorStatus = !!ctx->error_status;
-            sassFileContext->ErrorMessage = gcnew String(ctx->error_message);
+            sass_compile_file_context(ctx);
 
-            return result;
+            sassFileContext->ErrorStatus = sass_context_get_error_status(ctx_out);
+            sassFileContext->ErrorMessage = gcnew String(sass_context_get_error_message(ctx_out));
+            sassFileContext->OutputString = gcnew String(sass_context_get_output_string(ctx_out));
+            sassFileContext->OutputSourceMapFile = gcnew String(sass_context_get_source_map_string(ctx_out));
         }
         catch (exception& e)
         {
@@ -123,9 +124,10 @@ namespace LibSassNet
         finally
         {
             // Free resources
-            FreeString(ctx->options.include_paths);
-            FreeString(ctx->input_path);
-            sass_free_file_context(ctx);
+            FreeString(includePaths);
+            FreeString(inputPath);
+            FreeString(mapFile);
+            sass_delete_file_context(ctx);
         }
     }
 
