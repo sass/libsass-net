@@ -112,6 +112,8 @@ namespace LibSassNet
             sassFileContext->ErrorMessage = gcnew String(sass_context_get_error_message(ctx_out));
             sassFileContext->OutputString = gcnew String(sass_context_get_output_string(ctx_out));
             sassFileContext->OutputSourceMapFile = gcnew String(sass_context_get_source_map_string(ctx_out));
+
+            return 0;
         }
         catch (exception& e)
         {
