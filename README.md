@@ -7,6 +7,11 @@ A lightweight wrapper around libsass
 
 Requires [Visual C++ Redistributable](http://www.microsoft.com/en-us/download/details.aspx?id=40784)
 
+Usage
+---------
+Please read [this guide](https://github.com/darrenkopp/libsass-net/wiki/Usage)
+
+
 Versioning
 ----------
 
