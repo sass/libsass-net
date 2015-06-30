@@ -38,7 +38,7 @@ namespace LibSassNet
         try
         {
             ctx = sass_make_data_context(sourceString);
-            struct Sass_Options* options = sass_make_options();
+            struct Sass_Options* options = sass_data_context_get_options(ctx);
             struct Sass_Context* ctx_out = sass_data_context_get_context(ctx);
 
             // copy options around
@@ -95,15 +95,16 @@ namespace LibSassNet
         try
         {
             ctx = sass_make_file_context(inputPath);
-            struct Sass_Options* options = sass_make_options();
+            struct Sass_Options* options = sass_file_context_get_options(ctx);
             struct Sass_Context* ctx_out = sass_file_context_get_context(ctx);
 
             // copy options around
+            //sass_option_set_input_path(options, inputPath);
             sass_option_set_output_style(options, GetOutputStyle(sassFileContext->Options->OutputStyle));
             sass_option_set_source_comments(options, sassFileContext->Options->IncludeSourceComments);
             sass_option_set_precision(options, sassFileContext->Options->Precision);
             sass_option_set_include_path(options, includePaths);
-            sass_option_set_omit_source_map_url(options, true);
+            sass_option_set_omit_source_map_url(options, String::IsNullOrEmpty(sassFileContext->OutputSourceMapFile));
             sass_option_set_source_map_file(options, mapFile);
 
             sass_compile_file_context(ctx);
@@ -111,7 +112,7 @@ namespace LibSassNet
             sassFileContext->ErrorStatus = sass_context_get_error_status(ctx_out);
             sassFileContext->ErrorMessage = gcnew String(sass_context_get_error_message(ctx_out));
             sassFileContext->OutputString = gcnew String(sass_context_get_output_string(ctx_out));
-            sassFileContext->OutputSourceMapFile = gcnew String(sass_context_get_source_map_string(ctx_out));
+            sassFileContext->OutputSourceMap = gcnew String(sass_context_get_source_map_string(ctx_out));
 
             return 0;
         }

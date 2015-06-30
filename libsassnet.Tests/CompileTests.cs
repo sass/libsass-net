@@ -7,7 +7,7 @@ using Xunit;
 
 namespace LibSassNet.Tests
 {
-    class CompileTests
+    public class CompileTests
     {
         readonly ISassCompiler Compiler = new SassCompiler();
 
@@ -23,6 +23,13 @@ namespace LibSassNet.Tests
         {
             var response = Compiler.CompileFile("example.scss", includeSourceComments: false);
             Assert.NotEmpty(response.CSS);
+        }
+
+        [Fact]
+        public void when_source_map_file_specfied_should_return_sourcemap_data()
+        {
+            var response = Compiler.CompileFile("example.scss", sourceMapPath: "example.css.map");
+            Assert.NotEmpty(response.SourceMap);
         }
     }
 }
