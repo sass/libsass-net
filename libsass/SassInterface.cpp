@@ -52,7 +52,7 @@ namespace LibSassNet
 
             sass_compile_data_context(ctx);
 
-            sassContext->ErrorStatus = sass_context_get_error_status(ctx_out);
+            sassContext->ErrorStatus = !!sass_context_get_error_status(ctx_out);
             sassContext->ErrorMessage = gcnew String(sass_context_get_error_message(ctx_out));
             sassContext->OutputString = gcnew String(sass_context_get_output_string(ctx_out));
 
@@ -111,7 +111,7 @@ namespace LibSassNet
 
             sass_compile_file_context(ctx);
 
-            sassFileContext->ErrorStatus = sass_context_get_error_status(ctx_out);
+            sassFileContext->ErrorStatus = !!sass_context_get_error_status(ctx_out);
             sassFileContext->ErrorMessage = gcnew String(sass_context_get_error_message(ctx_out));
             sassFileContext->OutputString = gcnew String(sass_context_get_output_string(ctx_out));
             sassFileContext->OutputSourceMap = gcnew String(sass_context_get_source_map_string(ctx_out));
