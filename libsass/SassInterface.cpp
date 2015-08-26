@@ -33,6 +33,7 @@ namespace LibSassNet
     {
         char* includePaths = MarshalString(sassContext->Options->IncludePaths);
         char* sourceString = MarshalString(sassContext->SourceString);
+        char* lineFeed = MarshalString(sassContext->Options->LineFeed);
         struct Sass_Data_Context* ctx;
 
         try
@@ -45,6 +46,7 @@ namespace LibSassNet
             sass_option_set_output_style(options, GetOutputStyle(sassContext->Options->OutputStyle));
             sass_option_set_source_comments(options, sassContext->Options->IncludeSourceComments);
             sass_option_set_precision(options, sassContext->Options->Precision);
+            sass_option_set_linefeed(options, lineFeed);
             sass_option_set_include_path(options, includePaths);
             sass_option_set_omit_source_map_url(options, true);
 
@@ -88,8 +90,9 @@ namespace LibSassNet
         char* includePaths = MarshalString(sassFileContext->Options->IncludePaths);
         char* mapFile = MarshalString(sassFileContext->OutputSourceMapFile);
         char* inputPath = MarshalString(sassFileContext->InputPath);
-
+        char* lineFeed = MarshalString(sassFileContext->Options->LineFeed);
         struct Sass_File_Context* ctx;
+
         try
         {
             ctx = sass_make_file_context(inputPath);
@@ -101,6 +104,7 @@ namespace LibSassNet
             sass_option_set_output_style(options, GetOutputStyle(sassFileContext->Options->OutputStyle));
             sass_option_set_source_comments(options, sassFileContext->Options->IncludeSourceComments);
             sass_option_set_precision(options, sassFileContext->Options->Precision);
+            sass_option_set_linefeed(options, lineFeed);
             sass_option_set_include_path(options, includePaths);
             sass_option_set_omit_source_map_url(options, String::IsNullOrEmpty(sassFileContext->OutputSourceMapFile));
             sass_option_set_source_map_file(options, mapFile);

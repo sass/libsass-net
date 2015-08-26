@@ -31,6 +31,7 @@ namespace LibSassNet
 			property bool IncludeSourceComments;
 			property int Precision;
 			property String^ IncludePaths;
+			property String^ LineFeed;
 	};
 
 	public ref class SassContext
