@@ -29,6 +29,7 @@ namespace LibSassNet
 		public:
 			property int OutputStyle;
 			property bool IncludeSourceComments;
+			property bool OmitSourceMappingUrl;
 			property int Precision;
 			property String^ IncludePaths;
 			property String^ LineFeed;

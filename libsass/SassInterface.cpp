@@ -48,7 +48,7 @@ namespace LibSassNet
             sass_option_set_precision(options, sassContext->Options->Precision);
             sass_option_set_linefeed(options, lineFeed);
             sass_option_set_include_path(options, includePaths);
-            sass_option_set_omit_source_map_url(options, true);
+            sass_option_set_omit_source_map_url(options, sassContext->Options->OmitSourceMappingUrl);
 
             sass_compile_data_context(ctx);
 
@@ -106,7 +106,7 @@ namespace LibSassNet
             sass_option_set_precision(options, sassFileContext->Options->Precision);
             sass_option_set_linefeed(options, lineFeed);
             sass_option_set_include_path(options, includePaths);
-            sass_option_set_omit_source_map_url(options, String::IsNullOrEmpty(sassFileContext->OutputSourceMapFile));
+            sass_option_set_omit_source_map_url(options, sassFileContext->Options->OmitSourceMappingUrl);
             sass_option_set_source_map_file(options, mapFile);
 
             sass_compile_file_context(ctx);
