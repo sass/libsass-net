@@ -1,3 +1,7 @@
+platform:
+  - Win32
+  - x64
+
 configuration:
   - Debug
   - Release
