@@ -67,8 +67,6 @@ namespace LibSassNet
         finally
         {
             // Free resources
-            FreeString(includePaths);
-            FreeString(sourceString);
             sass_delete_data_context(ctx);
         }
     }
@@ -127,9 +125,6 @@ namespace LibSassNet
         finally
         {
             // Free resources
-            FreeString(includePaths);
-            FreeString(inputPath);
-            FreeString(mapFile);
             sass_delete_file_context(ctx);
         }
     }
@@ -156,6 +151,7 @@ namespace LibSassNet
         }
         finally
         {
+            // Upstream will not free the memory in case of sass2scss
             FreeString(sourceText);
         }
     }

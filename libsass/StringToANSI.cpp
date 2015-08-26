@@ -19,6 +19,7 @@
 //SOFTWARE.
 
 #using <System.dll>
+#include <string>
 #include "StringToANSI.hpp"
 
 using namespace System;
@@ -27,8 +28,18 @@ using namespace System::Runtime::InteropServices;
 namespace LibSassNet
 {
 	char* MarshalString(String^ s)
-	{
-        return (char*) ((Marshal::StringToCoTaskMemAnsi(s)).ToPointer());
+    {
+        if (!s) {
+            return nullptr;
+        }
+
+        char* original_str = (char*)(Marshal::StringToCoTaskMemAnsi(s)).ToPointer();
+        char* target_str = (char*)malloc(strlen(original_str) + 1);
+        strcpy(target_str, original_str);
+
+        FreeString(original_str);
+
+        return target_str;
 	}
 
 	void FreeString(const char* p)
