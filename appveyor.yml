@@ -1,3 +1,7 @@
+platform:
+  - Win32
+  - x64
+
 configuration:
   - Debug
   - Release
@@ -11,3 +15,7 @@ before_build:
 build:
   verbosity: minimal
   project: libsass-net.sln
+
+on_success:
+  - 7z a libsass-net.zip .
+  - ps: Push-AppveyorArtifact libsass-net.zip

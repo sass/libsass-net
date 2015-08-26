@@ -29,6 +29,10 @@ namespace LibSassNet
     {
         private readonly ISassInterface _sassInterface;
 
+        public string OutputLineFeed { get; set; }
+
+        public bool OmitSourceMappingUrl { get; set; }
+
         public SassCompiler()
         {
             _sassInterface = new SassInterface();
@@ -50,7 +54,9 @@ namespace LibSassNet
                     OutputStyle = (int)outputStyle,
                     IncludeSourceComments = includeSourceComments,
                     IncludePaths = includePaths != null ? String.Join(";", includePaths) : String.Empty,
-                    Precision = precision
+                    Precision = precision,
+                    LineFeed = OutputLineFeed ?? (OutputLineFeed = "\r\n"),
+                    OmitSourceMappingUrl = OmitSourceMappingUrl
                 }
             };
 
@@ -83,7 +89,9 @@ namespace LibSassNet
                     OutputStyle = (int)outputStyle,
                     IncludeSourceComments = includeSourceComments,
                     IncludePaths = String.Join(";", includePaths),
-                    Precision = precision
+                    Precision = precision,
+                    LineFeed = OutputLineFeed ?? (OutputLineFeed = "\r\n"),
+                    OmitSourceMappingUrl = OmitSourceMappingUrl
                 },
                 OutputSourceMapFile = sourceMapPath
             };
