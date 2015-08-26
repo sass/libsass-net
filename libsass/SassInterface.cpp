@@ -18,14 +18,9 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-#include <exception>
-#include "native\sass_interface.h"
 #include "native\sass2scss.h"
 #include "StringToANSI.hpp"
 #include "SassInterface.hpp"
-#include "native\sass_context.h"
-
-using namespace std;
 
 namespace LibSassNet
 {

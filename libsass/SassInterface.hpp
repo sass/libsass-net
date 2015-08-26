@@ -19,6 +19,7 @@
 //SOFTWARE.
 
 #include "ISassInterface.hpp"
+#include "native\sass_context.h"
 
 namespace LibSassNet
 {
