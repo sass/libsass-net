@@ -1,6 +1,8 @@
 libsass-net
 ===========
 
+[![Join the chat at https://gitter.im/darrenkopp/libsass-net](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/darrenkopp/libsass-net?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![AppVeyor CI Status](https://ci.appveyor.com/api/projects/status/github/darrenkopp/libsass-net?svg=true)](https://ci.appveyor.com/project/darrenkopp/libsass-net/branch/master)
 
 A lightweight wrapper around libsass
