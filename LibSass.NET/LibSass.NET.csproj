@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build;CopyLibSass" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4AD8B048-7A30-4873-8D11-C0A5273E9458}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LibSass</RootNamespace>
+    <AssemblyName>LibSass.NET</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>$(SolutionDir)bin\Debug\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)bin\Debug\obj\</IntermediateOutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>$(SolutionDir)bin\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)bin\obj\</IntermediateOutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Compiler\Context\FunctionHandling.cs" />
+    <Compile Include="Compiler\Context\ImporterHandling.cs" />
+    <Compile Include="Compiler\Context\InteropUtils.cs" />
+    <Compile Include="Compiler\Options\SassFunction.cs" />
+    <Compile Include="Compiler\Context\OptionsHandling.cs" />
+    <Compile Include="Types\SassBool.cs" />
+    <Compile Include="Types\SassNull.cs" />
+    <Compile Include="Types\SassError.cs" />
+    <Compile Include="Types\SassWarning.cs" />
+    <Compile Include="Types\SassString.cs" />
+    <Compile Include="Types\SassListSeparator.cs" />
+    <Compile Include="Types\SassTypeException.cs" />
+    <Compile Include="Types\SassNumber.cs" />
+    <Compile Include="Types\SassMap.cs" />
+    <Compile Include="Types\SassList.cs" />
+    <Compile Include="Types\ISassExportableType.cs" />
+    <Compile Include="Types\SassColor.cs" />
+    <Compile Include="Types\ISassType.cs" />
+    <Compile Include="Compiler\Options\ISassOptions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Compiler\Context\SafeContextHandle.cs" />
+    <Compile Include="Compiler\Context\SafeDataContextHandle.cs" />
+    <Compile Include="Compiler\Context\SafeFileContextHandle.cs" />
+    <Compile Include="Compiler\Context\SafeStringHandle.cs" />
+    <Compile Include="Compiler\SassCompiler.cs" />
+    <Compile Include="Compiler\SassExterns.cs" />
+    <Compile Include="Compiler\Options\SassImport.cs" />
+    <Compile Include="Compiler\Options\SassOptions.cs" />
+    <Compile Include="Compiler\Options\SassOutputStyle.cs" />
+    <Compile Include="Compiler\SassResult.cs" />
+    <Compile Include="Types\TypeFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libsassnet.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- Build LibSass -->
+  <Target Name="CopyLibSass" DependsOnTargets="BuildLibSass">
+    <Exec Command="copy &quot;$(OutDir)x64\libsass.dll&quot; &quot;$(OutDir)libsass.dll&quot;" LogStandardErrorAsError="true" ConsoleToMSBuild="true" />
+  </Target>
+  <Target Name="BuildLibSass">
+    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win32;OutDir=$(OutDir)x86\" />
+    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win64;OutDir=$(OutDir)x64\" />
+  </Target>
+</Project>

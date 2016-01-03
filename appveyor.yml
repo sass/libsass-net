@@ -1,6 +1,7 @@
-platform:
-  - Win32
-  - x64
+---
+version: '1.0.{build}'
+
+os: Visual Studio 2015
 
 configuration:
   - Debug
@@ -14,7 +15,10 @@ before_build:
 
 build:
   verbosity: minimal
-  project: libsass-net.sln
+  project: LibSass.NET.sln
+
+test_script:
+  - packages\xunit.runner.console.2.1.0\tools\xunit.console LibSass.NET.Tests\bin\%configuration%\LibSass.NET.Tests.dll 2>nul
 
 on_success:
   - 7z a libsass-net.zip .
