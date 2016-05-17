@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>libsassnet</id>
+    <version>3.3.6</version>
+    <authors>Darren Kopp</authors>
+    <owners>Darren Kopp</owners>
+    <licenseUrl>https://github.com/darrenkopp/libsass-net/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/darrenkopp/libsass-net/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Allows you to use the LibSass compiler from .NET</description>
+    <copyright>Copyright © 2016 by Darren Kopp</copyright>
+    <tags>SASS SCSS CSS LibSass</tags>
+  </metadata>
+  <files>
+    <file src="..\bin\x64\libsass.dll" target="build\x64\libsass.dll" />
+    <file src="..\bin\x86\libsass.dll" target="build\x86\libsass.dll" />
+    <file src="libsassnet.targets" target="build\libsassnet.targets" />
+    <file src="..\bin\LibSass.NET.dll" target="lib\net40\LibSass.NET.dll" />
+  </files>
+</package>

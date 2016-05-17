@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="libsassnet.Web.nuspec" />
+    <None Include="LibSass.NET.Web.nuspec" />
     <None Include="packages.config" />
     <None Include="web.config.transform" />
   </ItemGroup>
