@@ -23,8 +23,8 @@ LibSassNet's version will be the same as http://github.com/sass/LibSass
 
 LibSass.Web's version is independant of LibSass and will be following [SemVer](http://semver.org/)
 
-Current version LibSassNet : 3.2.4.1
+Current version LibSassNet : 3.3.6
 
-Currently implemented version of LibSass = 3.2.4
+Currently implemented version of LibSass = 3.3.6
 
-Current version of LibSassNet.Web 2.1.3
+Current version of LibSassNet.Web 2.2

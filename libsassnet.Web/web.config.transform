@@ -1,7 +1,0 @@
-﻿<configuration>
-    <system.webServer>
-        <handlers>
-          <add name="SassHandler" verb="GET" path="*.scss" type="LibSassNet.Web.SassHandler, libsassnet.Web" />
-        </handlers>
-    </system.webServer>
-</configuration>

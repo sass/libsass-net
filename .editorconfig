@@ -1,0 +1,31 @@
+# editorconfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Default settings:
+# A newline ending every file
+# Use 4 spaces as indentation
+[*]
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+end_of_line = crlf
+
+# Code files
+[*.{cshtml, c, cpp, cs, h, hpp}]
+curly_bracket_next_line = true
+indent_brace_style = Allman
+[*.cs]
+indent_style = space
+indent_size = 4
+[*.{js, json}]
+indent_size = 2
+
+# Configuration files
+[*.{xml, stylecop, resx, ruleset, props, targets, config, nuspec, csproj, vcxproj, vcxproj.filters, proj, nativeproj, locproj, json, yaml, yml}]
+indent_size = 2
+
+# Shell scripts
+[*.sh]
+end_of_line = lf
