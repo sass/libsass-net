@@ -5,6 +5,8 @@ using System.Text.RegularExpressions;
 using LibSass.Compiler.Options;
 using Xunit;
 using static LibSass.Tests.TestCommonsAndExtensions;
+using static System.IO.Path;
+using static System.IO.File;
 
 namespace LibSass.Tests.Spec
 {
@@ -20,7 +22,21 @@ namespace LibSass.Tests.Spec
             }
             .Compile();
 
-            Assert.Equal(expected.SpecNormalize(), result.Output.SpecNormalize());
+            if (!string.IsNullOrEmpty(result.ErrorMessage))
+            {
+                Assert.True(error);
+            }
+            else
+            {
+                Assert.False(error);
+            }
+
+            if (!string.IsNullOrEmpty(expected))
+            {
+                Assert.Equal(
+                    expected.SpecNormalize(),
+                    result.Output.SpecNormalize());
+            }
         }
 
         const string SpecInputFile = "input.scss";
@@ -50,27 +66,28 @@ namespace LibSass.Tests.Spec
                 foreach (var testDirectory in testDirectories)
                 {
                     var testPath = testDirectory.FullName;
-                    var hasErrorFile = File.Exists(Path.Combine(testPath, SpecErrorFile));
+                    var hasErrorFile = Exists(Combine(testPath, SpecErrorFile));
                     var hasError = false;
+
                     if (hasErrorFile)
                     {
-                        var errorFileContents = File.ReadAllText(Path.Combine(testPath, SpecErrorFile));
+                        var errorFileContents = ReadAllText(Combine(testPath, SpecErrorFile));
                         hasError = !(errorFileContents.StartsWith("DEPRECATION WARNING") ||
                                      errorFileContents.StartsWith("WARNING:") ||
                                      Regex.IsMatch(errorFileContents, @"^.*?\/input.scss:\d+ DEBUG:"));
                     }
 
-                    var inputFile = Path.Combine(testDirectory.FullName, SpecInputFile);
+                    var inputFile = Combine(testDirectory.FullName, SpecInputFile);
 
-                    if (!File.Exists(inputFile))
+                    if (!Exists(inputFile))
                         continue;
 
                     yield return new object[]
                     {
                         inputFile,
-                        File.ReadAllText(Path.Combine(testDirectory.FullName, SpecExpectedFile)),
+                        ReadAllText(Combine(testDirectory.FullName, SpecExpectedFile)),
                         hasErrorFile && hasError,
-                        new[] {testPath, Path.Combine(testPath, SpecSubDirectory) }
+                        new[] { testPath, Combine(testPath, SpecSubDirectory) }
                     };
                 }
             }
@@ -80,7 +97,8 @@ namespace LibSass.Tests.Spec
         {
             return Regex.Replace(input, @"\s+", string.Empty)
                         .Replace("{\r", "{")
-                        .Replace("{", "{\n").Replace(";", ";\n");
+                        .Replace("{", "{\n")
+                        .Replace(";", ";\n");
         }
     }
 }
