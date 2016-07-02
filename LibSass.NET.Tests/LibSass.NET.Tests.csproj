@@ -22,7 +22,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
-    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -120,8 +119,8 @@
     <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent Condition="$(Configuration) == 'Debug'">copy "$(SolutionDir)bin\Debug\libsass.dll" "$(OutputDir)libsass.dll"</PostBuildEvent>
-    <PostBuildEvent Condition="$(Configuration) == 'Release'">copy "$(SolutionDir)bin\libsass.dll" "$(OutputDir)libsass.dll"</PostBuildEvent>
+    <PostBuildEvent>copy "$(SolutionDir)bin\x86\libsass.dll" "$(OutputDir)libsass32.dll"
+copy "$(SolutionDir)bin\x64\libsass.dll" "$(OutputDir)libsass64.dll"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

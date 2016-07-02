@@ -38,6 +38,8 @@
     <Compile Include="Compiler\Context\InteropUtils.cs" />
     <Compile Include="Compiler\Options\SassFunction.cs" />
     <Compile Include="Compiler\Context\OptionsHandling.cs" />
+    <Compile Include="Compiler\SassExterns64.cs" />
+    <Compile Include="Compiler\SassExterns32.cs" />
     <Compile Include="Types\SassBool.cs" />
     <Compile Include="Types\SassNull.cs" />
     <Compile Include="Types\SassError.cs" />
@@ -76,7 +78,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Build LibSass -->
   <Target Name="CopyLibSass" DependsOnTargets="BuildLibSass">
-    <Exec Command="copy &quot;$(OutDir)x64\libsass.dll&quot; &quot;$(OutDir)libsass.dll&quot;" LogStandardErrorAsError="true" ConsoleToMSBuild="true" />
+    <Exec Command="copy &quot;$(OutDir)x86\libsass.dll&quot; &quot;$(OutDir)libsass32.dll&quot;" LogStandardErrorAsError="true" ConsoleToMSBuild="true" />
+    <Exec Command="copy &quot;$(OutDir)x64\libsass.dll&quot; &quot;$(OutDir)libsass64.dll&quot;" LogStandardErrorAsError="true" ConsoleToMSBuild="true" />
   </Target>
   <Target Name="BuildLibSass">
     <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win32;OutDir=$(OutDir)x86\" />
