@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata>
     <id>libsassnet</id>
-    <version>3.3.6</version>
+    <version>3.3.7-alpha-1</version>
     <authors>Darren Kopp</authors>
     <owners>Darren Kopp</owners>
     <licenseUrl>https://github.com/darrenkopp/libsass-net/blob/master/LICENSE</licenseUrl>
@@ -13,8 +13,8 @@
     <tags>SASS SCSS CSS LibSass</tags>
   </metadata>
   <files>
-    <file src="..\bin\x64\libsass.dll" target="build\x64\libsass.dll" />
-    <file src="..\bin\x86\libsass.dll" target="build\x86\libsass.dll" />
+    <file src="..\bin\x64\libsass.dll" target="build\libsass64.dll" />
+    <file src="..\bin\x86\libsass.dll" target="build\libsass32.dll" />
     <file src="libsassnet.targets" target="build\libsassnet.targets" />
     <file src="..\bin\LibSass.NET.dll" target="lib\net40\LibSass.NET.dll" />
   </files>
