@@ -13,6 +13,9 @@ Usage
 ---------
 Please read [this guide](https://github.com/darrenkopp/libsass-net/wiki/Usage)
 
+**Please use the Alpha versions for the time being. the "Stable" versions are unstable and slow.** 
+https://www.nuget.org/packages/libsassnet.Web/2.3.0-alpha-1  
+https://www.nuget.org/packages/libsassnet/3.3.7-alpha-2
 
 Versioning
 ----------
