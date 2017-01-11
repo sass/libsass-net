@@ -26,8 +26,8 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>$(SolutionDir)bin\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)bin\obj\</IntermediateOutputPath>
+    <OutputPath>$(SolutionDir)bin\Release\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)bin\Release\obj\</IntermediateOutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -82,7 +82,7 @@
     <Copy SourceFiles="$(OutDir)x64\libsass.dll" DestinationFiles="$(OutDir)libsass64.dll" />
   </Target>
   <Target Name="BuildLibSass">
-    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win32;OutDir=$(OutDir)x86\" />
-    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win64;OutDir=$(OutDir)x64\" />
+    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win32;OutDir=$(OutDir)x86\;IntDir=$(OutDir)x86\" />
+    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win64;OutDir=$(OutDir)x64\;IntDir=$(OutDir)x64\" />
   </Target>
 </Project>

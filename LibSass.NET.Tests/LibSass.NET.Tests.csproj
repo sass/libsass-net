@@ -125,7 +125,7 @@
   </Target>
   -->
   <Target Name="AfterBuild">
-    <Copy SourceFiles="$(SolutionDir)$(OutDir)libsass32.dll" DestinationFiles="$(TargetDir)libsass32.dll" />
-    <Copy SourceFiles="$(SolutionDir)$(OutDir)libsass64.dll" DestinationFiles="$(TargetDir)libsass64.dll" />
+    <Copy SourceFiles="$(SolutionDir)$(OutDir)\libsass32.dll" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="$(SolutionDir)$(OutDir)\libsass64.dll" DestinationFolder="$(TargetDir)" />
   </Target>
 </Project>
