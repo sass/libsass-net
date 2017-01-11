@@ -78,8 +78,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Build LibSass -->
   <Target Name="CopyLibSass" DependsOnTargets="BuildLibSass">
-    <Exec Command="copy &quot;$(OutDir)x86\libsass.dll&quot; &quot;$(OutDir)libsass32.dll&quot;" LogStandardErrorAsError="true" ConsoleToMSBuild="true" />
-    <Exec Command="copy &quot;$(OutDir)x64\libsass.dll&quot; &quot;$(OutDir)libsass64.dll&quot;" LogStandardErrorAsError="true" ConsoleToMSBuild="true" />
+    <Copy SourceFiles="$(OutDir)x86\libsass.dll" DestinationFiles="$(OutDir)libsass32.dll" />
+    <Copy SourceFiles="$(OutDir)x64\libsass.dll" DestinationFiles="$(OutDir)libsass64.dll" />
   </Target>
   <Target Name="BuildLibSass">
     <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win32;OutDir=$(OutDir)x86\" />
