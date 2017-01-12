@@ -20,7 +20,6 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)bin\Debug\obj\</IntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -30,8 +29,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)bin\obj\</IntermediateOutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -54,15 +52,13 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent Condition="$(Configuration) == 'Debug'">copy "$(SolutionDir)bin\Debug\libsass.dll" "$(OutputDir)libsass.dll"</PostBuildEvent>
-    <PostBuildEvent Condition="$(Configuration) == 'Release'">copy "$(SolutionDir)bin\libsass.dll" "$(OutputDir)libsass.dll"</PostBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
   -->
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(SolutionDir)$(OutDir)\libsass32.dll" DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="$(SolutionDir)$(OutDir)\libsass64.dll" DestinationFolder="$(TargetDir)" />
+  </Target>
 </Project>
