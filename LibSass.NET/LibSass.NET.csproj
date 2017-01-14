@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build;CopyLibSass" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -10,27 +10,24 @@
     <RootNamespace>LibSass</RootNamespace>
     <AssemblyName>LibSass.NET</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OutputPath>$(SolutionDir)bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)bin\$(Configuration)\obj\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>$(SolutionDir)bin\Debug\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)bin\Debug\obj\</IntermediateOutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>$(SolutionDir)bin\Release\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)bin\Release\obj\</IntermediateOutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Compiler\Context\FunctionHandling.cs" />
@@ -77,12 +74,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Build LibSass -->
-  <Target Name="CopyLibSass" DependsOnTargets="BuildLibSass">
-    <Copy SourceFiles="$(OutDir)x86\libsass.dll" DestinationFiles="$(OutDir)libsass32.dll" />
-    <Copy SourceFiles="$(OutDir)x64\libsass.dll" DestinationFiles="$(OutDir)libsass64.dll" />
-  </Target>
-  <Target Name="BuildLibSass">
-    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win32;OutDir=$(OutDir)x86\;IntDir=$(OutDir)x86\" />
-    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win64;OutDir=$(OutDir)x64\;IntDir=$(OutDir)x64\" />
+  <Target Name="AfterBuild">
+    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win32;TargetName=libsass32;OutDir=$(OutputPath);IntDir=$(IntermediateOutputPath)" />
+    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win64;TargetName=libsass64;OutDir=$(OutputPath);IntDir=$(IntermediateOutputPath)" />
   </Target>
 </Project>
