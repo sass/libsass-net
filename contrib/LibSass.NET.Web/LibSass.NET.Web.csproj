@@ -59,6 +59,7 @@
   <Target Name="AfterBuild">
     <Copy
       SourceFiles="$(LibSassPath)libsass32.dll;$(LibSassPath)libsass64.dll"
-      DestinationFolder="$(OutputPath)" />
+      DestinationFolder="$(OutputPath)"
+      SkipUnchangedFiles="true" />
   </Target>
 </Project>
