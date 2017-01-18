@@ -10,24 +10,25 @@
     <RootNamespace>LibSass.Web</RootNamespace>
     <AssemblyName>LibSass.NET.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>bin\$(Configuration)\obj\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <FileAlignment>512</FileAlignment>
+    <LibSassPath>$(SolutionDir)\bin\$(Configuration)\</LibSassPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -55,13 +56,10 @@
     <None Include="web.config.transform" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  -->
   <Target Name="AfterBuild">
-    <Copy SourceFiles="$(SolutionDir)$(OutDir)\libsass32.dll" DestinationFolder="$(TargetDir)" />
-    <Copy SourceFiles="$(SolutionDir)$(OutDir)\libsass64.dll" DestinationFolder="$(TargetDir)" />
+    <Copy
+      SourceFiles="$(LibSassPath)libsass32.dll;$(LibSassPath)libsass64.dll"
+      DestinationFolder="$(OutputPath)"
+      SkipUnchangedFiles="true" />
   </Target>
 </Project>

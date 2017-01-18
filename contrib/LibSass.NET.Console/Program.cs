@@ -9,15 +9,15 @@ namespace LibSass.Console
 {
     public class Program
     {
-        public static void Main()
+        public static void Main(string[] args)
         {
             OutputEncoding = Encoding.Unicode;
 
-            const string inputPath = "test.scss";
+            string inputPath = args.Length > 0 ? args[0] : "test.scss";
 
             if (!File.Exists(inputPath))
             {
-                WriteLine($"Input file '{inputPath}' does not exist.");
+                WriteLine($"Input file '{inputPath}' does not exist.\n\nPress any key to continue..");
                 ReadKey();
                 return;
             }
@@ -150,7 +150,10 @@ namespace LibSass.Console
 
             var sass = new SassCompiler(sassOptions);
             var result = sass.Compile();
+
             WriteLine(result.ToString());
+            WriteLine("\n\nPress any key to continue..");
+
             ReadKey();
         }
 

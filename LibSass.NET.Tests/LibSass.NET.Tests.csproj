@@ -10,30 +10,26 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LibSass.Tests</RootNamespace>
     <AssemblyName>LibSass.NET.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>bin\$(Configuration)\obj\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <LibSassPath>$(SolutionDir)\bin\$(Configuration)\</LibSassPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -119,13 +115,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  -->
   <Target Name="AfterBuild">
-    <Copy SourceFiles="$(SolutionDir)$(OutDir)\libsass32.dll" DestinationFolder="$(TargetDir)" />
-    <Copy SourceFiles="$(SolutionDir)$(OutDir)\libsass64.dll" DestinationFolder="$(TargetDir)" />
+    <Copy
+      SourceFiles="$(LibSassPath)libsass32.dll;$(LibSassPath)libsass64.dll"
+      DestinationFolder="$(OutputPath)"
+      SkipUnchangedFiles="true" />
   </Target>
 </Project>
