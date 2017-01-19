@@ -10,13 +10,15 @@
     <RootNamespace>LibSass</RootNamespace>
     <AssemblyName>LibSass.NET</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <OutputPath>$(SolutionDir)bin\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)bin\$(Configuration)\obj\</IntermediateOutputPath>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <FileAlignment>512</FileAlignment>
+    <LibSass32>$(SolutionDir)bin\$(Configuration)\libsass32.dll</LibSass32>
+    <LibSass64>$(SolutionDir)bin\$(Configuration)\libsass64.dll</LibSass64>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,16 +68,35 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="LibSass.Net.nuspec" />
-    <None Include="libsassnet.targets" />
+    <None Include="libsassnet.targets">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(LibSass32)">
+      <Link>libsass32.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(LibSass64)">
+      <Link>libsass64.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Build LibSass -->
-  <Target Name="AfterBuild">
-    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win32;TargetName=libsass32;OutDir=$(OutputPath);IntDir=$(IntermediateOutputPath)" />
-    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win64;TargetName=libsass64;OutDir=$(OutputPath);IntDir=$(IntermediateOutputPath)" />
+  <Target Name="BeforeBuild">
+    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win32;TargetName=libsass32;OutDir=$(SolutionDir)bin\$(Configuration)\;IntDir=$(SolutionDir)bin\$(Configuration)\obj\Win32\" Condition="!Exists('$(LibSass32)')" />
+    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win64;TargetName=libsass64;OutDir=$(SolutionDir)bin\$(Configuration)\;IntDir=$(SolutionDir)bin\$(Configuration)\obj\Win64\" Condition="!Exists('$(LibSass64)')" />
+  </Target>
+  <Target Name="AfterClean">
+    <ItemGroup>
+        <FilesToDelete Include="$(SolutionDir)bin\$(Configuration)\**\*"/>
+    </ItemGroup>   
+    <Delete Files="@(FilesToDelete)" />   
+    <RemoveDir Directories="$(SolutionDir)bin\$(Configuration)\" />
   </Target>
 </Project>

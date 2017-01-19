@@ -13,9 +13,9 @@
     <tags>SASS SCSS CSS LibSass</tags>
   </metadata>
   <files>
-    <file src="..\bin\$configuration$\libsass64.dll" target="build\libsass64.dll" />
-    <file src="..\bin\$configuration$\libsass32.dll" target="build\libsass32.dll" />
+    <file src="bin\$configuration$\libsass64.dll" target="build\libsass64.dll" />
+    <file src="bin\$configuration$\libsass32.dll" target="build\libsass32.dll" />
     <file src="libsassnet.targets" target="build\libsassnet.targets" />
-    <file src="..\bin\$configuration$\LibSass.NET.dll" target="lib\net40\LibSass.NET.dll" />
+    <file src="bin\$configuration$\LibSass.NET.dll" target="lib\net40\LibSass.NET.dll" />
   </files>
 </package>
