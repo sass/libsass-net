@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using LibSass.Compiler.Options;
 using Xunit;
-using static LibSass.Tests.TestCommonsAndExtensions;
-using static System.IO.Path;
 using static System.IO.File;
+using static System.IO.Path;
+using static LibSass.Tests.TestCommonsAndExtensions;
 
 namespace LibSass.Tests.Spec
 {
