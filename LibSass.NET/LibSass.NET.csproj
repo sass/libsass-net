@@ -35,8 +35,6 @@
     <Compile Include="Compiler\Context\InteropUtils.cs" />
     <Compile Include="Compiler\Options\SassFunction.cs" />
     <Compile Include="Compiler\Context\OptionsHandling.cs" />
-    <Compile Include="Compiler\SassExterns64.cs" />
-    <Compile Include="Compiler\SassExterns32.cs" />
     <Compile Include="Types\SassBool.cs" />
     <Compile Include="Types\SassNull.cs" />
     <Compile Include="Types\SassError.cs" />
@@ -67,15 +65,54 @@
   <ItemGroup>
     <None Include="LibSass.Net.nuspec" />
     <None Include="libsassnet.targets" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- Detect Platform -->
+  <UsingTask TaskName="OSVersionInformation" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <LibSassPlatform ParameterType="System.String" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System.Reflection" />
+      <Code Type="Fragment" Language="cs"><![CDATA[
+          var assembly = Assembly.LoadFrom(@"..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll");
+          Type runtimeType = assembly.GetType("System.Runtime.InteropServices.RuntimeInformation");
+          var osDescription = runtimeType.GetProperty("OSDescription")
+                             .GetValue(null, null).ToString();
+          var osArchitecture = runtimeType.GetProperty("OSArchitecture")
+                              .GetValue(null, null).ToString();
+
+          if (osDescription.StartsWith("Microsoft Windows"))
+          {
+              if (osArchitecture == "X86")
+              {
+                  LibSassPlatform = "Win32";
+              }
+              else if (osArchitecture == "X64")
+              {
+                  LibSassPlatform = "Win64";
+              }
+          }
+        ]]></Code>
+    </Task>
+  </UsingTask>
+  <Target Name="GetOSIdentifiers" Condition=" '$(LibSassPlatform)' == '' ">
+    <OSVersionInformation>
+      <Output TaskParameter="LibSassPlatform" PropertyName="LibSassPlatform" />
+    </OSVersionInformation>
+  </Target>
   <!-- Build LibSass -->
-  <Target Name="AfterBuild">
-    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win32;TargetName=libsass32;OutDir=$(OutputPath);IntDir=$(IntermediateOutputPath)" />
-    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win64;TargetName=libsass64;OutDir=$(OutputPath);IntDir=$(IntermediateOutputPath)" />
+  <Target Name="AfterBuild" DependsOnTargets="GetOSIdentifiers">
+    <Message Importance="High" Text="Commencing build for platform: $(LibSassPlatform)" />
+
+    <!-- Windows -->
+    <MSBuild Projects="..\LibSass\win\libsass.sln" BuildInParallel="true"
+             Condition="'$(LibSassPlatform)' == 'Win32' or '$(LibSassPlatform)' == 'Win64'"
+             Properties="Configuration=$(Configuration);Platform=$(LibSassPlatform);OutDir=$(OutputPath);IntDir=$(IntermediateOutputPath)" />
   </Target>
 </Project>

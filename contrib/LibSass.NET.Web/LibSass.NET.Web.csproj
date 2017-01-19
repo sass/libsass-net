@@ -58,7 +58,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
     <Copy
-      SourceFiles="$(LibSassPath)libsass32.dll;$(LibSassPath)libsass64.dll"
+      SourceFiles="$(LibSassPath)libsass.dll"
       DestinationFolder="$(OutputPath)"
       SkipUnchangedFiles="true" />
   </Target>
