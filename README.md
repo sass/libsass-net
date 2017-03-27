@@ -7,7 +7,7 @@ libsass-net
 
 A lightweight wrapper around libsass
 
-Requires [Visual C++ Redistributable](http://www.microsoft.com/en-us/download/details.aspx?id=40784)
+Requires [Visual C++ 2015 Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=53587) or [Choco](https://chocolatey.org/packages/vcredist2015)
 
 Usage
 ---------
