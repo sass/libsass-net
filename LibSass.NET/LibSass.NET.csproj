@@ -75,7 +75,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Build LibSass -->
   <Target Name="AfterBuild">
-    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win32;TargetName=libsass32;OutDir=$(OutputPath);IntDir=$(IntermediateOutputPath)" />
-    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win64;TargetName=libsass64;OutDir=$(OutputPath);IntDir=$(IntermediateOutputPath)" />
+    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win32;TargetName=libsass32;OutDir=$(OutputPath);IntDir=$(IntermediateOutputPath);RuntimeLibrary=MultiThreaded" />
+    <MSBuild Targets="Build" Projects="..\LibSass\win\libsass.sln" BuildInParallel="true" Properties="Configuration=$(Configuration);Platform=Win64;TargetName=libsass64;OutDir=$(OutputPath);IntDir=$(IntermediateOutputPath);RuntimeLibrary=MultiThreaded" />
   </Target>
 </Project>
